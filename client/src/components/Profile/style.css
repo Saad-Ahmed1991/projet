@@ -1,0 +1,211 @@
+
+.section {
+    color: #6F8BA4;
+    padding: 2em 0;
+    position: relative;
+}
+.gray-bg {
+    background-color: #f5f5f5;
+}
+.profile_img {
+    max-width: 20em;
+    border-radius: 50%;
+}
+.profile_img {
+    vertical-align: middle;
+    border-style: none;
+}
+.loading{
+  margin-top:10vh
+}
+/* About Me 
+---------------------*/
+.about-text h3 {
+  font-size: 45px;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+.about-avatar{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  padding: 1em;
+}
+@media (max-width: 767px) {
+  .about-text h3 {
+    font-size: 35px;
+  }
+}
+.about-text h6 {
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+@media (max-width: 767px) {
+  .about-text h6 {
+    font-size: 18px;
+  }
+}
+.about-text p {
+  font-size: 18px;
+  max-width: 450px;
+}
+.about-text p mark {
+  font-weight: 600;
+  color: #20247b;
+}
+
+.about-list {
+  padding-top: 10px;
+}
+.about-list .media {
+  padding: 5px 0;
+}
+.about-list label {
+  color: #20247b;
+  font-weight: 600;
+  width: 88px;
+  margin: 0;
+  position: relative;
+}
+
+.about-list p {
+  margin: 0;
+  font-size: 15px;
+}
+.row {
+  display: flex;
+  justify-content: space-evenly;
+}
+.btn_edit {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 2em;
+}
+.label-file {
+  cursor: pointer;
+  color: #2c8ff9;
+  font-weight: bold;
+}
+.label-file:hover {
+  color: #5d25c4;
+  scale: 1.1;
+  transition: scale ease-in-out 0.2s;
+}
+
+.input-file {
+  display: none;
+}
+.image_list{
+  padding: 2em;
+}
+.backdrop {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  }
+.backdrop img {
+  max-width: 80%;
+  max-height: 80%;
+  object-fit: contain;
+}
+.empty_gallery{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10rem;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.gallery{
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin: 1em;
+}
+
+@media (max-width: 991px) {
+  .about-avatar {
+    margin-top: 30px;
+  }
+}
+
+.about-section .counter {
+  padding: 22px 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(31, 45, 61, 0.125);
+}
+.about-section .counter .count-data {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.about-section .counter .count {
+  font-weight: 700;
+  color: #20247b;
+  margin: 0 0 5px;
+}
+.about-section .counter p {
+  font-weight: 600;
+  margin: 0;
+}
+mark {
+    background-image: linear-gradient(rgba(252, 83, 86, 0.6), rgba(252, 83, 86, 0.6));
+    background-size: 100% 3px;
+    background-repeat: no-repeat;
+    background-position: 0 bottom;
+    background-color: transparent;
+    padding: 0;
+    color: currentColor;
+}
+.theme-color {
+    color: #fc5356;
+}
+.dark-color {
+    color: #20247b;
+}
+
+.btn-4 {
+  background: #2c8ff9;
+  color: #fff;
+  border-radius:0.5em;
+  
+}
+
+.btn-4:hover {
+  background: #0666c6;
+}
+
+.btn-4:active {
+  background: #0666c6;
+  top: 2px;
+}
+
+.btn-4:before {
+  position: absolute;
+  height: 100%;
+  left: 0;
+  top: 0;
+  line-height: 3;
+  font-size: 140%;
+  width: 60px;
+}
+.btn_save_cancel{
+  padding-inline: 2rem;
+}
+
+.image_list_item:hover{
+scale: 1.05;
+z-index: 10;
+transition: scale 0.3s ease-in-out;
+}
+.picture_delete_btn{
+  padding-inline: 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: rgb(245, 72, 72);
+  color: white;
+  
+}

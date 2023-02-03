@@ -1,0 +1,47 @@
+.zui-table {
+    width: 100%;
+    border: solid 1px #DDEEEE;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font: normal 13px Arial, sans-serif;
+}
+.zui-table thead th {
+    background-color: #DDEFEF;
+    border: solid 1px #DDEEEE;
+    color: #336B6B;
+    padding: 10px;
+    text-align: center;
+    text-shadow: 1px 1px 1px #fff;
+}
+.zui-table tbody td {
+    border: solid 1px #DDEEEE;
+    color: #333;
+    padding: 10px;
+    text-shadow: 1px 1px 1px #fff;
+}
+.actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+.action_btn {
+    border: none;
+    background: none;
+    width: 2rem;
+}
+.delete_user_btn:hover{
+    scale:1.1;
+    transition: scale 0.2s ease-in-out;
+}
+.ban_unban_btn{
+    font-weight: bold;
+    color: #333;
+}
+.admin_edit_input {
+    border: none;
+    margin: 0;
+    border-bottom: 1px solid black;
+    outline: none;
+    padding: 0.2rem;
+}
