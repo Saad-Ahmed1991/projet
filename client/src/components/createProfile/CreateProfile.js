@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./style.css";
-import { createProfile } from "../../redux/Actions/profileActions";
+import {
+  createProfile,
+  createWorkerProfile,
+} from "../../redux/Actions/profileActions";
 import { InputLabel, NativeSelect, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { getCurrentUser } from "../../redux/Actions/userActions";
-import { createService } from "../../redux/Actions/serviceActions";
-
 const CreateProfile = () => {
   const navigate = useNavigate();
   const currentUser = useSelector((state) => state.userReducer.currentUser);
@@ -17,9 +18,10 @@ const CreateProfile = () => {
     dispatch(getCurrentUser());
   }, []);
   const handleCreateProfile = () => {
-    dispatch(createProfile(profile, navigate));
     if (currentUser.role === "worker") {
-      dispatch(createService(profession, navigate));
+      dispatch(createWorkerProfile(profile, profession, navigate));
+    } else {
+      dispatch(createProfile(profile, navigate));
     }
   };
 

@@ -1,6 +1,8 @@
 import {
   CREATE_PROFILE_FAIL,
   CREATE_PROFILE_LOADING,
+  CREATE_WORKER_PROFILE_FAIL,
+  CREATE_WORKER_PROFILE_LOADING,
   GET_CURRENT_PROFILE_FAIL,
   GET_CURRENT_PROFILE_LOADING,
   GET_CURRENT_PROFILE_SUCCESS,
@@ -35,6 +37,10 @@ export const profileReducer = (state = initialState, { type, payload }) => {
     case CREATE_PROFILE_LOADING:
       return { ...state, loading: true };
     case CREATE_PROFILE_FAIL:
+      return { ...state, errors: payload, loading: false };
+    case CREATE_WORKER_PROFILE_LOADING:
+      return { ...state, loading: true };
+    case CREATE_WORKER_PROFILE_FAIL:
       return { ...state, errors: payload, loading: false };
 
     default:

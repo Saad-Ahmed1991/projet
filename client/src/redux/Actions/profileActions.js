@@ -24,6 +24,34 @@ export const createProfile = (profile, navigate) => async (dispatch) => {
   }
 };
 
+//create worker profile
+
+export const createWorkerProfile =
+  (profile, service, navigate) => async (dispatch) => {
+    dispatch({ type: "CREATE_WORKER_PROFILE_LOADING" });
+    const token = localStorage.getItem("token");
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/profile/createworkerprofile",
+        { profile, service: { profession: service } },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      dispatch({
+        type: "CREATE_WORKER_PROFILE_SUCCESS",
+        payload: response.data,
+      });
+      navigate("/profile");
+    } catch (error) {
+      console.log(error);
+      dispatch({ type: "CREATE_WORKER_PROFILE_FAIL", payload: error });
+    }
+  };
+
 //get current profile
 
 export const getProfile = () => async (dispatch) => {

@@ -1,6 +1,7 @@
 const express = require("express");
 const { cloudinary } = require("../utils/cloudinary");
 const Profile = require("../models/Profile");
+const Service = require("../models/Service");
 const router = express.Router();
 const isAuth = require("../middlewares/isAuth");
 const User = require("../models/User");
@@ -20,6 +21,31 @@ router.post("/createprofile", isAuth(), async (req, res) => {
       { _id: req.user._id },
       { hasProfile: true }
     );
+    res.send({ msg: "profile added successfully", newProfile });
+  } catch (error) {
+    res.status(400).send("error");
+  }
+});
+
+//create worker profile and service
+
+router.post("/createworkerprofile", isAuth(), async (req, res) => {
+  try {
+    const newProfile = new Profile(req.body.profile);
+    newProfile.user = req.user._id;
+    await newProfile.save();
+    console.log("new profile", newProfile);
+    const profile = await Profile.findOne({ _id: newProfile._id });
+    const newService = new Service(req.body.service);
+    newService.profile = profile._id;
+    newService.user = req.user._id;
+    await newService.save();
+    console.log("new service", newService);
+    const response = await User.updateOne(
+      { _id: req.user._id },
+      { hasProfile: true, hasService: true }
+    );
+    console.log(response);
     res.send({ msg: "profile added successfully", newProfile });
   } catch (error) {
     res.status(400).send("error");

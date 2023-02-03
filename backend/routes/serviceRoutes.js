@@ -34,7 +34,9 @@ router.get("/currentservice", isAuth(), async (req, res) => {
   try {
     const currentService = await Service.findOne({
       user: req.user._id,
-    }).populate("user");
+    })
+      .populate("user", "firstName lastName email")
+      .populate("profile");
     res.send(currentService);
   } catch (error) {
     res.status(400).send("error");
