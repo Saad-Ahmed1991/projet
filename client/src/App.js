@@ -13,6 +13,9 @@ import { getCUrrentService } from "./redux/Actions/serviceActions";
 import UsersList from "./components/usersList/UsersList";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import ServiceList from "./components/ServiceList/ServiceList";
+import Sidebar from "./components/sidebar/Sidebar";
+import { maxHeight } from "@mui/system";
+import Layout from "./components/Layout/Layout";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,7 +39,10 @@ function App() {
           element={
             <>
               <NavBar />
-              <ServiceList />
+              <Layout>
+                <Sidebar />
+                <ServiceList />
+              </Layout>
             </>
           }
         />

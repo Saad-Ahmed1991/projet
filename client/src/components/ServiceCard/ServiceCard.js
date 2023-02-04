@@ -12,7 +12,7 @@ import { Rating } from "@mui/material";
 
 export default function ServiceCard({ service }) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ width: 280 }}>
       <CardHeader
         avatar={
           <Avatar

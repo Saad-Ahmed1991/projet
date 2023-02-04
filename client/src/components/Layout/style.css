@@ -1,0 +1,15 @@
+.layout{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+    margin-inline: 0.2rem;
+}
+.leftside {
+    order: 1;
+    flex: 1;
+}
+.main {
+    flex: 4;
+    order: 3;
+    padding-top: 2rem;
+}

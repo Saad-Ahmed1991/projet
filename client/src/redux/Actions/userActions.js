@@ -40,7 +40,7 @@ export const logIn = (user, navigate) => async (dispatch) => {
     }
 
     if (respose.data.user.hasProfile) {
-      navigate("/profile");
+      navigate("/");
     } else {
       navigate("/profile/createprofile");
     }
