@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./style.css";
 import avatar from "../../avatar.jpg";
+import SaveIcon from "@mui/icons-material/Save";
 import {
   getProfile,
   updateProfile,
@@ -14,7 +15,6 @@ import {
   NativeSelect,
   Rating,
   TextField,
-  Typography,
 } from "@mui/material";
 import {
   getCUrrentService,
@@ -208,7 +208,11 @@ const Profile = () => {
                             <label>Rating</label>
                             <Rating
                               name="read-only"
-                              value={currentService.rating}
+                              precision={0.5}
+                              value={
+                                currentService.totalRating /
+                                currentService.ratingNumber
+                              }
                               readOnly
                             />
                           </div>
@@ -332,6 +336,8 @@ const Profile = () => {
                       <Button
                         onClick={handleProfileImageChange}
                         variant="contained"
+                        style={{ width: "10rem" }}
+                        endIcon={<SaveIcon />}
                       >
                         Save
                       </Button>

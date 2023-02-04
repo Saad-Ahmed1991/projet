@@ -70,4 +70,38 @@ router.put("/uploadimages", isAuth(), async (req, res) => {
   }
 });
 
+//delete image
+
+router.put("/deleteimage", isAuth(), async (req, res) => {
+  const imageUrl = req.body.imageUrl;
+  console.log("imageUrl", imageUrl);
+  try {
+    const updatedService = await Service.findOne({ user: req.user._id });
+    console.log("updatedService", updatedService);
+    updatedService.images = updatedService.images.filter(
+      (img) => img !== imageUrl
+    );
+    await updatedService.save();
+
+    res.send({ msg: "picture deleted" });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send(error);
+  }
+});
+
+// get all services
+
+router.get("/services", async (req, res) => {
+  try {
+    const services = await Service.find()
+      .populate("user", "firstName lastName email")
+      .populate("profile");
+    res.send(services);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({ msg: error });
+  }
+});
+
 module.exports = router;

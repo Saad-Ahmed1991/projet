@@ -12,6 +12,7 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import { getCUrrentService } from "./redux/Actions/serviceActions";
 import UsersList from "./components/usersList/UsersList";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import ServiceList from "./components/ServiceList/ServiceList";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,7 +31,15 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<NavBar />} />
+        <Route
+          path="/"
+          element={
+            <>
+              <NavBar />
+              <ServiceList />
+            </>
+          }
+        />
         <Route
           path="/user/signup"
           element={

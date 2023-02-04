@@ -86,11 +86,12 @@
   cursor: pointer;
   color: #2c8ff9;
   font-weight: bold;
+  transition: scale ease-in-out 0.2s;
+
 }
 .label-file:hover {
   color: #5d25c4;
   scale: 1.1;
-  transition: scale ease-in-out 0.2s;
 }
 
 .input-file {
@@ -195,11 +196,12 @@ mark {
 .btn_save_cancel{
   padding-inline: 2rem;
 }
-
+.image_list_item{
+  transition: scale 0.3s ease-in-out;
+}
 .image_list_item:hover{
 scale: 1.05;
 z-index: 10;
-transition: scale 0.3s ease-in-out;
 }
 .picture_delete_btn{
   padding-inline: 2rem;
@@ -207,5 +209,8 @@ transition: scale 0.3s ease-in-out;
   border-radius: 0.5rem;
   background-color: rgb(245, 72, 72);
   color: white;
-  
+  transition: scale 0.3s ease-in-out;
+}
+.picture_delete_btn:hover {
+  scale: 1.2;
 }
