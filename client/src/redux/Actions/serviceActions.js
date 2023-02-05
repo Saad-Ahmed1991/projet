@@ -100,13 +100,16 @@ export const deleteImage = (imageUrl) => async (dispatch) => {
 
 //get all services
 
-export const getALLServices = (category) => async (dispatch) => {
+export const getALLServices = (category, city, rating) => async (dispatch) => {
   dispatch({ type: GET_ALL_SERVICES_LOADING });
   try {
     const response = await axios.get(
       `http://localhost:5000/api/service/services?category=${category}`
     );
-    dispatch({ type: GET_ALL_SERVICES_SUCCESS, payload: response });
+    dispatch({
+      type: GET_ALL_SERVICES_SUCCESS,
+      payload: { response, city, rating },
+    });
   } catch (error) {
     console.log(error);
     dispatch({ type: GET_ALL_SERVICES_FAIL, payload: error });

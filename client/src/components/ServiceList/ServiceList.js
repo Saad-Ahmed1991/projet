@@ -5,11 +5,19 @@ import ServiceCard from "../ServiceCard/ServiceCard";
 import "./style.css";
 
 const ServiceList = () => {
-  const allServices = useSelector((state) => state.serviceReducer.allServices);
+  const city = useSelector((state) => state.serviceReducer.city);
+  const rating = useSelector((state) => state.serviceReducer.rating);
+  const allServices = useSelector(
+    (state) => state.serviceReducer.allServices
+  ).filter(
+    (service) =>
+      service.profile.city.includes(city) &&
+      service.totalRating / service.ratingNumber >= rating
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getALLServices(""));
+    dispatch(getALLServices("", "", 0));
   }, []);
 
   return (

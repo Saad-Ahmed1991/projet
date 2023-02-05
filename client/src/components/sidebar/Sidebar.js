@@ -16,9 +16,9 @@ import { getALLServices } from "../../redux/Actions/serviceActions";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
-  const [rating, setRating] = useState(false);
-  const [category, setCategory] = useState(false);
-  const [city, setCity] = useState(false);
+  const [rating, setRating] = useState(0);
+  const [category, setCategory] = useState("");
+  const [city, setCity] = useState("");
 
   return (
     <>
@@ -65,7 +65,7 @@ const Sidebar = () => {
                     <MenuItem>
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
+                    <MenuItem value={"gafsa"}>Gafsa</MenuItem>
                     <MenuItem value={20}>Twenty</MenuItem>
                     <MenuItem value={30}>Thirty</MenuItem>
                   </Select>
@@ -89,7 +89,7 @@ const Sidebar = () => {
               variant="contained"
               endIcon={<SearchIcon />}
               onClick={() => {
-                dispatch(getALLServices(category));
+                dispatch(getALLServices(category, city, rating));
               }}
             >
               Search

@@ -19,6 +19,8 @@ const initialState = {
   currentService: {},
   allServices: [],
   loading: false,
+  city: "",
+  rating: 0,
 };
 
 export const serviceReducer = (state = initialState, { type, payload }) => {
@@ -73,7 +75,14 @@ export const serviceReducer = (state = initialState, { type, payload }) => {
         loading: true,
       };
     case GET_ALL_SERVICES_SUCCESS: {
-      return { ...state, allServices: payload.data, loading: false };
+      console.log("payload", payload);
+      return {
+        ...state,
+        allServices: payload.response.data,
+        rating: payload.rating,
+        city: payload.city,
+        loading: false,
+      };
     }
     case GET_ALL_SERVICES_FAIL: {
       return { ...state, error: payload, loading: false };
