@@ -65,6 +65,21 @@ router.get("/currentprofile", isAuth(), async (req, res) => {
   }
 });
 
+//get user profile
+
+router.get("/:profileId", isAuth(), async (req, res) => {
+  const profileId = req.params.profileId;
+  try {
+    const userProfile = await Profile.findOne({
+      user: profileId,
+    });
+    res.send(userProfile);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({ msg: error });
+  }
+});
+
 //profile image
 
 router.put("/uploadprofileimage", isAuth(), async (req, res) => {

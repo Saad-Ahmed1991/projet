@@ -1,120 +1,100 @@
 import {
   Button,
-  Checkbox,
   FormControl,
-  FormControlLabel,
   FormGroup,
   FormLabel,
   InputLabel,
   MenuItem,
   Rating,
   Select,
-  TextField,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import React, { useState } from "react";
 import "./style.css";
+import { useDispatch } from "react-redux";
+import { getALLServices } from "../../redux/Actions/serviceActions";
 
 const Sidebar = () => {
+  const dispatch = useDispatch();
   const [rating, setRating] = useState(false);
   const [category, setCategory] = useState(false);
   const [city, setCity] = useState(false);
-  const [name, setName] = useState(false);
-  const [ratingValue, setRatingValue] = useState(0);
-  const [categoryValue, setCategoryValue] = useState("");
-  const [cityValue, setCityValue] = useState("");
-  const [nameValue, setNameValue] = useState("");
+
   return (
     <>
       <div className="sidebar">
         <FormGroup>
-          <FormLabel> Filter by</FormLabel>
-          <FormControlLabel
-            control={<Checkbox />}
-            label="Rating"
-            onChange={() => setRating(!rating)}
-          />
-          <div>
-            {rating ? (
-              <Rating onChange={(e) => setRatingValue(e.target.value)} />
-            ) : null}
-          </div>
-          <FormControlLabel
-            control={<Checkbox />}
-            label="Category"
-            onChange={() => setCategory(!category)}
-          />
-          <div>
+          <div className="sidebar_items">
+            <FormLabel> Filter by</FormLabel>
+            <div>
+              <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+                <InputLabel id="demo-simple-select-standard-label">
+                  Category
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-standard-label"
+                  id="demo-simple-select-standard"
+                  label="Category"
+                  onChange={(e) => {
+                    setCategory(e.target.value);
+                  }}
+                >
+                  <MenuItem>
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem value={10}>Ten</MenuItem>
+                  <MenuItem value={20}>Twenty</MenuItem>
+                  <MenuItem value={"plombier"}>Plombier</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
             {category ? (
-              <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-                <InputLabel id="demo-simple-select-standard-label">
-                  Age
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-standard-label"
-                  id="demo-simple-select-standard"
-                  label="Age"
-                  onChange={(e) => setCategoryValue(e.target.value)}
-                >
-                  <MenuItem>
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
-              </FormControl>
+              <div>
+                <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+                  <InputLabel id="demo-simple-select-standard-label">
+                    City
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-standard-label"
+                    id="demo-simple-select-standard"
+                    label="City"
+                    onChange={(e) => {
+                      setCity(e.target.value);
+                    }}
+                  >
+                    <MenuItem>
+                      <em>None</em>
+                    </MenuItem>
+                    <MenuItem value={10}>Ten</MenuItem>
+                    <MenuItem value={20}>Twenty</MenuItem>
+                    <MenuItem value={30}>Thirty</MenuItem>
+                  </Select>
+                </FormControl>
+              </div>
             ) : null}
-          </div>
-          <FormControlLabel
-            control={<Checkbox />}
-            label="City"
-            onChange={() => setCity(!city)}
-          />
-          <div>
             {city ? (
-              <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+              <div>
                 <InputLabel id="demo-simple-select-standard-label">
-                  Age
+                  Rating
                 </InputLabel>
-                <Select
-                  labelId="demo-simple-select-standard-label"
-                  id="demo-simple-select-standard"
-                  label="Age"
-                  onChange={(e) => setCityValue(e.target.value)}
-                >
-                  <MenuItem>
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
-              </FormControl>
+                <Rating
+                  onChange={(e) => {
+                    setRating(e.target.value);
+                  }}
+                />
+              </div>
             ) : null}
+            <Button
+              style={{ width: "12rem", marginTop: "2rem" }}
+              variant="contained"
+              endIcon={<SearchIcon />}
+              onClick={() => {
+                dispatch(getALLServices(category));
+              }}
+            >
+              Search
+            </Button>
           </div>
-          <FormControlLabel
-            control={<Checkbox />}
-            label="Name"
-            onChange={() => setName(!name)}
-          />
-          <div>
-            {name ? (
-              <TextField
-                id="standard-basic"
-                label="Standard"
-                variant="standard"
-                onChange={(e) => setNameValue(e.target.value)}
-              />
-            ) : null}
-          </div>
-          <Button
-            style={{ width: "12rem", marginTop: "2rem" }}
-            variant="contained"
-            endIcon={<SearchIcon />}
-          >
-            Search
-          </Button>
         </FormGroup>
       </div>
     </>

@@ -93,8 +93,9 @@ router.put("/deleteimage", isAuth(), async (req, res) => {
 // get all services
 
 router.get("/services", async (req, res) => {
+  const category = req.query.category || "";
   try {
-    const services = await Service.find()
+    const services = await Service.find({ profession: { $regex: category } })
       .populate("user", "firstName lastName email")
       .populate("profile");
     res.send(services);

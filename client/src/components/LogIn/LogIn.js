@@ -13,8 +13,9 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link as LinkR, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logIn } from "../../redux/Actions/userActions";
+import LogInAlert from "../Alerts/LogInAlert";
 
 function Copyright(props) {
   return (
@@ -37,10 +38,12 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignInSide() {
+  const [showAlert, setShowAlert] = React.useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
+
     const data = new FormData(event.currentTarget);
     dispatch(
       logIn(

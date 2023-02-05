@@ -59,8 +59,7 @@ router.post("/login", logInRules(), validator, async (req, res) => {
     const token = jwt.sign(payload, process.env.PRIVATEKEY);
     res.send({ user: existUser, token });
   } catch (error) {
-    console.log(error);
-    res.status(400).send(error.message);
+    res.status(400).send({ msg: error.message });
   }
 });
 

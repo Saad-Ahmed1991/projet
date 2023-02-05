@@ -9,7 +9,7 @@ const ServiceList = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getALLServices());
+    dispatch(getALLServices(""));
   }, []);
 
   return (

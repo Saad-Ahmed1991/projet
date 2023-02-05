@@ -22,7 +22,7 @@ export const userReducer = (state = initialState, { type, payload }) => {
     case SIGN_UP_FAIL:
       return { ...state, errors: payload };
     case LOG_IN_FAIL:
-      return { ...state, errors: payload };
+      return { ...state, errors: payload.response.data.msg };
     case LOG_IN_SUCCESS:
       localStorage.setItem("token", payload.token);
       return {

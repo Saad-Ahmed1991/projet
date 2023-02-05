@@ -29,23 +29,23 @@ export const userSignUp = (newUser, navigate) => async (dispatch) => {
 
 export const logIn = (user, navigate) => async (dispatch) => {
   try {
-    const respose = await axios.post(
+    const response = await axios.post(
       "http://localhost:5000/api/user/login",
       user
     );
-    dispatch({ type: LOG_IN_SUCCESS, payload: respose.data });
-    if (respose.data.user.role === "admin") {
+    dispatch({ type: LOG_IN_SUCCESS, payload: response.data });
+    if (response.data.user.role === "admin") {
       const token = localStorage.getItem("token");
       dispatch(getAllUsers(token));
     }
 
-    if (respose.data.user.hasProfile) {
+    if (response.data.user.hasProfile) {
       navigate("/");
     } else {
       navigate("/profile/createprofile");
     }
   } catch (error) {
-    console.log(error);
+    console.log("log in response", error);
     dispatch({ type: LOG_IN_FAIL, payload: error });
   }
 };
