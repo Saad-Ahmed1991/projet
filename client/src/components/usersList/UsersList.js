@@ -1,18 +1,21 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import SaveIcon from "@mui/icons-material/Save";
 import CloseIcon from "@mui/icons-material/Close";
 import "./style.css";
+import { deleteUser } from "../../redux/Actions/userActions";
 
 const UsersList = () => {
+  const dispatch = useDispatch();
   const allUsers = useSelector((state) => state.userReducer.allUsers);
   const [edit, setEdit] = useState(false);
   const [idDelete, setIdDelete] = useState(null);
   const [editedUser, setEditedUser] = useState({});
   const handleDelete = (id) => {
     setIdDelete(id);
+    dispatch(deleteUser(id));
   };
   const handleEdit = (id) => {
     setIdDelete(id);

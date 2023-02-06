@@ -75,7 +75,6 @@ export const serviceReducer = (state = initialState, { type, payload }) => {
         loading: true,
       };
     case GET_ALL_SERVICES_SUCCESS: {
-      console.log("payload", payload);
       return {
         ...state,
         allServices: payload.response.data,

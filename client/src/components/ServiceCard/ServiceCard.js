@@ -21,7 +21,11 @@ export default function ServiceCard({ service }) {
               aria-label="Profile image"
             ></Avatar>
           }
-          title={`${service.user.firstName} ${service.user.lastName}`}
+          title={
+            service.user
+              ? `${service.user.firstName} ${service.user.lastName}`
+              : null
+          }
           subheader={service.profession}
         />
         <CardMedia

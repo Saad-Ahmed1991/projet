@@ -1,5 +1,8 @@
 import axios from "axios";
 import {
+  DELETE_USER_FAIL,
+  DELETE_USER_LOADING,
+  DELETE_USER_SUCCESS,
   GET_ALL_USERS_FAIL,
   GET_ALL_USERS_LOADING,
   GET_ALL_USERS_SUCCESS,
@@ -93,5 +96,27 @@ export const getAllUsers = () => async (dispatch) => {
   } catch (error) {
     console.log(error);
     dispatch({ type: GET_ALL_USERS_FAIL, payload: error });
+  }
+};
+
+//delete user
+
+export const deleteUser = (userId) => async (dispatch) => {
+  dispatch({ type: DELETE_USER_LOADING });
+  const token = localStorage.getItem("token");
+  try {
+    const response = await axios.delete(
+      `http://localhost:5000/api/user/deleteuser/${userId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    dispatch({ type: DELETE_USER_SUCCESS, payload: response.data });
+    dispatch(getAllUsers(token));
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: DELETE_USER_FAIL, payload: error });
   }
 };

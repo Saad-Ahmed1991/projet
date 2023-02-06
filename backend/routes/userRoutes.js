@@ -96,4 +96,20 @@ router.get("/allusers", isAuth(), isAdmin, async (req, res) => {
 
 // delete user
 
+router.delete("/deleteuser/:iddelete", isAuth(), isAdmin, async (req, res) => {
+  const idDelete = req.params.iddelete;
+
+  try {
+    const deleteResponse = await User.deleteOne({ _id: idDelete });
+    if (deleteResponse) {
+      return res.send({ msg: "User deleted" });
+    }
+
+    return res.status(400).send({ msg: "user already deleted" });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send(error);
+  }
+});
+
 module.exports = router;
