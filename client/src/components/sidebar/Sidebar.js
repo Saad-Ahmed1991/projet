@@ -8,6 +8,7 @@ import {
   Rating,
   Select,
 } from "@mui/material";
+import { cities } from "../Consts/consts";
 import SearchIcon from "@mui/icons-material/Search";
 import React, { useState } from "react";
 import "./style.css";
@@ -65,19 +66,23 @@ const Sidebar = () => {
                     <MenuItem>
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={"gafsa"}>Gafsa</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
+                    {cities.map((city) => (
+                      <MenuItem value={city}>{city}</MenuItem>
+                    ))}
                   </Select>
                 </FormControl>
               </div>
             ) : null}
-            {city ? (
+            {category ? (
               <div>
-                <InputLabel id="demo-simple-select-standard-label">
+                <InputLabel
+                  style={{ marginBottom: "1rem" }}
+                  id="demo-simple-select-standard-label"
+                >
                   Rating
                 </InputLabel>
                 <Rating
+                  size="large"
                   onChange={(e) => {
                     setRating(e.target.value);
                   }}

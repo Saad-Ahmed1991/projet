@@ -5,7 +5,14 @@ import {
   createProfile,
   createWorkerProfile,
 } from "../../redux/Actions/profileActions";
-import { InputLabel, NativeSelect, TextField } from "@mui/material";
+import { cities } from "../Consts/consts";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { getCurrentUser } from "../../redux/Actions/userActions";
 const CreateProfile = () => {
@@ -59,7 +66,33 @@ const CreateProfile = () => {
 
                       <div className="media">
                         <label>City</label>
-                        <TextField
+                        <FormControl
+                          variant="standard"
+                          sx={{ m: 1, minWidth: 120 }}
+                        >
+                          <InputLabel id="demo-simple-select-standard-label">
+                            City
+                          </InputLabel>
+                          <Select
+                            labelId="demo-simple-select-standard-label"
+                            id="demo-simple-select-standard"
+                            label="City"
+                            onChange={(e) => {
+                              setProfile({
+                                ...profile,
+                                city: e.target.value,
+                              });
+                            }}
+                          >
+                            <MenuItem>
+                              <em>None</em>
+                            </MenuItem>
+                            {cities.map((city) => (
+                              <MenuItem value={city}>{city}</MenuItem>
+                            ))}
+                          </Select>
+                        </FormControl>
+                        {/*<TextField
                           id="standard-basic"
                           label="City"
                           variant="standard"
@@ -69,7 +102,7 @@ const CreateProfile = () => {
                               city: e.target.value,
                             });
                           }}
-                        />
+                        />*/}
                       </div>
                     </div>
                     <div className="col-md-6">

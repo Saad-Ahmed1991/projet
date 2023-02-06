@@ -214,3 +214,8 @@ z-index: 10;
 .picture_delete_btn:hover {
   scale: 1.2;
 }
+
+.phoneNumber{
+  color: #fc5356;
+  font-weight: bold;
+}

@@ -11,7 +11,7 @@ const ServiceList = () => {
     (state) => state.serviceReducer.allServices
   ).filter(
     (service) =>
-      service.profile.city.includes(city) &&
+      service.profile.city.includes(city.toLowerCase()) &&
       service.totalRating / service.ratingNumber >= rating
   );
   const dispatch = useDispatch();

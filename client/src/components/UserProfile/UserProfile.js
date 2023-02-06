@@ -11,14 +11,14 @@ import UserImagesList from "../UserImageList/UserImageList";
 const UserProfile = () => {
   const dispatch = useDispatch();
   const obj = useParams();
+  const token = localStorage.getItem("token");
   const loading = useSelector((state) => state.serviceReducer.loading);
   const service = useSelector(
     (state) => state.serviceReducer.allServices
   ).filter((el) => el._id == obj.id);
-  console.log("service", service);
 
   useEffect(() => {
-    dispatch(getALLServices());
+    dispatch(getALLServices("", "", 0));
   }, []);
 
   return (
@@ -40,20 +40,16 @@ const UserProfile = () => {
                       <div className="col-md-6">
                         <div className="media">
                           <label>Birthday</label>
-
-                          <p>{service[0].profile.birthday}</p>
+                          <p>{service[0] && service[0].profile.birthday}</p>
                         </div>
                         <div className="media">
                           <label>Age</label>
-
                           <p>35</p>
                         </div>
                         <div className="media">
                           <label>City</label>
-
-                          <p>{service[0].profile.city}</p>
+                          <p>{service[0] && service[0].profile.city}</p>
                         </div>
-
                         <div
                           className="media"
                           style={{
@@ -76,23 +72,28 @@ const UserProfile = () => {
                       <div className="col-md-6">
                         <div className="media">
                           <label>E-mail</label>
-
                           <p>{service[0] && service[0].user.email}</p>
                         </div>
                         <div className="media">
                           <label>Phone</label>
-
-                          <p>{service[0].profile.phoneNumber}</p>
+                          {token ? (
+                            <p>
+                              {service[0] && service[0].profile.phoneNumber}
+                            </p>
+                          ) : (
+                            <>
+                              <p className="phoneNumber">
+                                *Login to see contact number*
+                              </p>
+                            </>
+                          )}
                         </div>
                         <div className="media">
                           <label>Address</label>
-
-                          <p>{service[0].profile.adress}</p>
+                          <p>{service[0] && service[0].profile.adress}</p>
                         </div>
-
                         <div className="media">
                           <label>Profession</label>
-
                           <p>{service[0].profession}</p>
                         </div>
                       </div>
