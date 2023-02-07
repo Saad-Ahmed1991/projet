@@ -21,12 +21,17 @@ const ServiceList = () => {
   }, []);
 
   return (
-    <div className="serviceList">
-      {allServices
-        ? allServices.map((service) => (
-            <ServiceCard service={service} key={service._id} />
-          ))
-        : null}
+    <div>
+      <div>
+        <h1>Looking for a service?</h1>
+      </div>
+      <div className="serviceList">
+        {allServices
+          ? allServices.map((service) => (
+              <ServiceCard service={service} key={service._id} />
+            ))
+          : null}
+      </div>
     </div>
   );
 };

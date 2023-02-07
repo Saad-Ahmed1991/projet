@@ -16,7 +16,6 @@ const UserProfile = () => {
   const service = useSelector(
     (state) => state.serviceReducer.allServices
   ).filter((el) => el._id == obj.id);
-
   useEffect(() => {
     dispatch(getALLServices("", "", 0));
   }, []);

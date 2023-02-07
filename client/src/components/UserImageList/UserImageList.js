@@ -3,6 +3,7 @@ import ImageListItem from "@mui/material/ImageListItem";
 import { ImageList } from "@mui/material";
 import { useSelector } from "react-redux";
 import ImageBackdrop from "../ImageBackdrop/ImageBackdrop";
+import UserImageBackdrop from "../UserProfile/UserImageBackDrop";
 
 const UserImagesList = ({ images }) => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -30,7 +31,7 @@ const UserImagesList = ({ images }) => {
               </ImageListItem>
             ))}
             {selectedImage && (
-              <ImageBackdrop
+              <UserImageBackdrop
                 selectedImage={selectedImage}
                 setSelectedImage={setSelectedImage}
               />

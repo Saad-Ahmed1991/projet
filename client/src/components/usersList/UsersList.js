@@ -5,7 +5,9 @@ import EditIcon from "@mui/icons-material/Edit";
 import SaveIcon from "@mui/icons-material/Save";
 import CloseIcon from "@mui/icons-material/Close";
 import "./style.css";
-import { deleteUser } from "../../redux/Actions/userActions";
+import { deleteUser, editUser } from "../../redux/Actions/userActions";
+import NotInterestedIcon from "@mui/icons-material/NotInterested";
+import TaskAltIcon from "@mui/icons-material/TaskAlt";
 
 const UsersList = () => {
   const dispatch = useDispatch();
@@ -124,8 +126,20 @@ const UsersList = () => {
                               gap: "0.5rem",
                             }}
                           >
-                            <SaveIcon style={{ color: "limegreen" }} />
-                            <CloseIcon />
+                            <button
+                              onClick={() => {
+                                dispatch(editUser(editedUser, user._id));
+                              }}
+                              className="action_btn delete_user_btn"
+                            >
+                              <SaveIcon style={{ color: "limegreen" }} />
+                            </button>
+                            <button
+                              className="action_btn delete_user_btn"
+                              onClick={() => setEdit(false)}
+                            >
+                              <CloseIcon />
+                            </button>
                           </span>
                         ) : (
                           <EditIcon style={{ color: "blue" }} />
@@ -137,8 +151,23 @@ const UsersList = () => {
                       >
                         <DeleteIcon style={{ color: "red" }} />
                       </button>
-                      <button className="action_btn ban_unban_btn">
-                        {user.isBanned ? "Unban" : "Ban"}
+                      <button
+                        onClick={() => {
+                          dispatch(
+                            editUser({ isBanned: !user.isBanned }, user._id)
+                          );
+                        }}
+                        className="action_btn ban_unban_btn"
+                      >
+                        {user.isBanned ? (
+                          <div className="ban_unban unban">
+                            UNBAN <TaskAltIcon sx={{ color: "limegreen" }} />
+                          </div>
+                        ) : (
+                          <div className="ban_unban">
+                            BAN <NotInterestedIcon />
+                          </div>
+                        )}
                       </button>
                     </div>
                   </td>

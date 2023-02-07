@@ -8,8 +8,10 @@ import {
   Rating,
   Select,
 } from "@mui/material";
+import logo from "../../logo.png";
 import { cities } from "../Consts/consts";
 import SearchIcon from "@mui/icons-material/Search";
+import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import React, { useState } from "react";
 import "./style.css";
 import { useDispatch } from "react-redux";
@@ -24,6 +26,7 @@ const Sidebar = () => {
   return (
     <>
       <div className="sidebar">
+        <img className="sidebar_logo" src={logo} alt="logo" />
         <FormGroup>
           <div className="sidebar_items">
             <FormLabel> Filter by</FormLabel>
@@ -89,16 +92,32 @@ const Sidebar = () => {
                 />
               </div>
             ) : null}
-            <Button
-              style={{ width: "12rem", marginTop: "2rem" }}
-              variant="contained"
-              endIcon={<SearchIcon />}
-              onClick={() => {
-                dispatch(getALLServices(category, city, rating));
-              }}
-            >
-              Search
-            </Button>
+            <div>
+              <Button
+                style={{ width: "12rem", marginTop: "2rem" }}
+                variant="contained"
+                endIcon={<SearchIcon />}
+                onClick={() => {
+                  dispatch(getALLServices(category, city, rating));
+                }}
+              >
+                Search
+              </Button>
+              <Button
+                style={{
+                  width: "12rem",
+                  marginTop: "2rem",
+                  backgroundColor: "limegreen",
+                }}
+                variant="contained"
+                endIcon={<RestartAltIcon />}
+                onClick={() => {
+                  dispatch(getALLServices("", "", 0));
+                }}
+              >
+                Reset
+              </Button>
+            </div>
           </div>
         </FormGroup>
       </div>

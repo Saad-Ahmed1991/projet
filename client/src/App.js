@@ -14,7 +14,6 @@ import UsersList from "./components/usersList/UsersList";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import ServiceList from "./components/ServiceList/ServiceList";
 import Sidebar from "./components/sidebar/Sidebar";
-import { maxHeight } from "@mui/system";
 import Layout from "./components/Layout/Layout";
 import UserProfile from "./components/UserProfile/UserProfile";
 

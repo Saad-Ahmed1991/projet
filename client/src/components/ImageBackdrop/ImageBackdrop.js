@@ -8,11 +8,7 @@ import { useParams } from "react-router-dom";
 export default function ImageBackdrop({ selectedImage, setSelectedImage }) {
   const [open, setOpen] = React.useState(true);
   const dispatch = useDispatch();
-  const obj = useParams();
   const currentUser = useSelector((state) => state.userReducer.currentUser);
-  const service = useSelector(
-    (state) => state.serviceReducer.allServices
-  ).filter((el) => el._id == obj.id);
 
   const handleClose = () => {
     setOpen(false);
@@ -27,16 +23,14 @@ export default function ImageBackdrop({ selectedImage, setSelectedImage }) {
         onClick={handleClose}
       >
         <div className="backdrop">
-          {currentUser && currentUser._id == service[0].user._id ? (
-            <button
-              onClick={() => {
-                dispatch(deleteImage(selectedImage));
-              }}
-              className="picture_delete_btn"
-            >
-              Delete this picture <DeleteIcon />
-            </button>
-          ) : null}
+          <button
+            onClick={() => {
+              dispatch(deleteImage(selectedImage));
+            }}
+            className="picture_delete_btn"
+          >
+            Delete this picture <DeleteIcon />
+          </button>
           <img src={selectedImage} alt="" />
         </div>
       </Backdrop>

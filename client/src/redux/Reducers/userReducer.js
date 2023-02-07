@@ -1,6 +1,8 @@
 import {
   DELETE_USER_FAIL,
   DELETE_USER_LOADING,
+  EDIT_USER_FAIL,
+  EDIT_USER_LOADING,
   GET_ALL_USERS_FAIL,
   GET_ALL_USERS_LOADING,
   GET_ALL_USERS_SUCCESS,
@@ -53,6 +55,10 @@ export const userReducer = (state = initialState, { type, payload }) => {
       return { ...state, loading: true };
     case DELETE_USER_FAIL:
       return { ...state, errors: payload, loading: false };
+    case EDIT_USER_FAIL:
+      return { ...state, errors: payload, loading: false };
+    case EDIT_USER_LOADING:
+      return { ...state, loading: true };
 
     default:
       return state;

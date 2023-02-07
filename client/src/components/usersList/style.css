@@ -35,8 +35,8 @@
     transition: scale 0.2s ease-in-out;
 }
 .ban_unban_btn{
-    font-weight: bold;
-    color: #333;
+    font-weight: bolder;
+    color:red;
 }
 .admin_edit_input {
     border: none;
@@ -44,4 +44,13 @@
     border-bottom: 1px solid black;
     outline: none;
     padding: 0.2rem;
+}
+.ban_unban{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2rem;
+}
+.unban{
+    color: limegreen;
 }

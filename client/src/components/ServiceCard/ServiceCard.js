@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 export default function ServiceCard({ service }) {
   return (
     <Link to={`/userprofile/${service._id}`}>
-      <Card sx={{ width: 280 }}>
+      <Card sx={{ width: 280, backgroundColor: "lightgrey" }}>
         <CardHeader
           avatar={
             <Avatar

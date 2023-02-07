@@ -112,4 +112,18 @@ router.delete("/deleteuser/:iddelete", isAuth(), isAdmin, async (req, res) => {
   }
 });
 
+//update user
+router.put("/edituser/:id", isAuth(), isAdmin, async (req, res) => {
+  const userId = req.params.id;
+  try {
+    const updatedUser = await User.updateOne({ _id: userId }, { ...req.body });
+    if (!updatedUser.modifiedCount) {
+      return res.status(400).send({ msg: "user already updated" });
+    }
+    res.send({ msg: "user successfully updated " });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send(error);
+  }
+});
 module.exports = router;
