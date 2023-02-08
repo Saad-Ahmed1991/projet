@@ -6,6 +6,9 @@ import {
   GET_ALL_SERVICES_FAIL,
   GET_ALL_SERVICES_LOADING,
   GET_ALL_SERVICES_SUCCESS,
+  GET_USER_SERVICE_FAIL,
+  GET_USER_SERVICE_LOADING,
+  GET_USER_SERVICE_SUCCESS,
 } from "../Consts/serviceConsts";
 
 //create new service
@@ -113,5 +116,22 @@ export const getALLServices = (category, city, rating) => async (dispatch) => {
   } catch (error) {
     console.log(error);
     dispatch({ type: GET_ALL_SERVICES_FAIL, payload: error });
+  }
+};
+
+//get user serivce
+export const getUserService = (userId) => async (dispatch) => {
+  dispatch({ type: GET_USER_SERVICE_LOADING });
+  try {
+    const response = await axios.get(
+      `http://localhost:5000/api/service/userservice/${userId}`
+    );
+    dispatch({
+      type: GET_USER_SERVICE_SUCCESS,
+      payload: response,
+    });
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: GET_USER_SERVICE_FAIL, payload: error });
   }
 };

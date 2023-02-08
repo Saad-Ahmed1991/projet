@@ -54,3 +54,14 @@
 .unban{
     color: limegreen;
 }
+.sort_section {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.sort_radio_buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-block: 0.5rem;
+}

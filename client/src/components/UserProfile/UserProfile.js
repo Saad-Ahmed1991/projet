@@ -1,7 +1,6 @@
 import { Rating } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import avatar from "../../avatar.jpg";
 import { getALLServices } from "../../redux/Actions/serviceActions";
 
@@ -10,12 +9,9 @@ import UserImagesList from "../UserImageList/UserImageList";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
-  const obj = useParams();
   const token = localStorage.getItem("token");
   const loading = useSelector((state) => state.serviceReducer.loading);
-  const service = useSelector(
-    (state) => state.serviceReducer.allServices
-  ).filter((el) => el._id == obj.id);
+  const service = useSelector((state) => state.serviceReducer.userService);
   useEffect(() => {
     dispatch(getALLServices("", "", 0));
   }, []);
@@ -32,14 +28,13 @@ const UserProfile = () => {
                 <div className="col-lg-6">
                   <div className="about-text go-to">
                     <h3 className="dark-color">
-                      {service[0] && service[0].user.firstName}{" "}
-                      {service[0] && service[0].user.lastName}
+                      {service.user.firstName} {service.user.lastName}
                     </h3>
                     <div className="row about-list">
                       <div className="col-md-6">
                         <div className="media">
                           <label>Birthday</label>
-                          <p>{service[0] && service[0].profile.birthday}</p>
+                          <p>{service.profile.birthday}</p>
                         </div>
                         <div className="media">
                           <label>Age</label>
@@ -47,7 +42,7 @@ const UserProfile = () => {
                         </div>
                         <div className="media">
                           <label>City</label>
-                          <p>{service[0] && service[0].profile.city}</p>
+                          <p>{service.profile.city}</p>
                         </div>
                         <div
                           className="media"
@@ -61,9 +56,7 @@ const UserProfile = () => {
                           <Rating
                             name="read-only"
                             precision={0.5}
-                            value={
-                              service[0].totalRating / service[0].ratingNumber
-                            }
+                            value={service.ratingNumber}
                             readOnly
                           />
                         </div>
@@ -71,14 +64,12 @@ const UserProfile = () => {
                       <div className="col-md-6">
                         <div className="media">
                           <label>E-mail</label>
-                          <p>{service[0] && service[0].user.email}</p>
+                          <p>{service.user.email}</p>
                         </div>
                         <div className="media">
                           <label>Phone</label>
                           {token ? (
-                            <p>
-                              {service[0] && service[0].profile.phoneNumber}
-                            </p>
+                            <p>{service.profile.phoneNumber}</p>
                           ) : (
                             <>
                               <p className="phoneNumber">
@@ -89,11 +80,11 @@ const UserProfile = () => {
                         </div>
                         <div className="media">
                           <label>Address</label>
-                          <p>{service[0] && service[0].profile.adress}</p>
+                          <p>{service.profile.adress}</p>
                         </div>
                         <div className="media">
                           <label>Profession</label>
-                          <p>{service[0].profession}</p>
+                          <p>{service.profession}</p>
                         </div>
                       </div>
                     </div>
@@ -103,7 +94,7 @@ const UserProfile = () => {
                   <div className="about-avatar">
                     <img
                       className="profile_img"
-                      src={service[0].profile.profileImg || avatar}
+                      src={service.profile.profileImg || avatar}
                       title=""
                       alt=""
                     />
@@ -132,9 +123,8 @@ const UserProfile = () => {
               </div>
             </div>
           </section>
-
           <div className="image_list section about-section gray-bg">
-            <UserImagesList images={service[0].images} />
+            <UserImagesList images={service.images} />
           </div>
         </div>
       )}

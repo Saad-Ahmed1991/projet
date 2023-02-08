@@ -105,4 +105,19 @@ router.get("/services", async (req, res) => {
   }
 });
 
+//get one user service
+
+router.get("/userservice/:userid", async (req, res) => {
+  const userId = req.params.userid;
+  try {
+    const service = await Service.findOne({ user: userId })
+      .populate("user", "firstName lastName email")
+      .populate("profile");
+    res.send(service);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send(error);
+  }
+});
+
 module.exports = router;

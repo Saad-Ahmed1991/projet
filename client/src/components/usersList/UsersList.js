@@ -8,10 +8,25 @@ import "./style.css";
 import { deleteUser, editUser } from "../../redux/Actions/userActions";
 import NotInterestedIcon from "@mui/icons-material/NotInterested";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
+import {
+  FormControlLabel,
+  FormLabel,
+  Radio,
+  RadioGroup,
+  TextField,
+} from "@mui/material";
 
 const UsersList = () => {
   const dispatch = useDispatch();
-  const allUsers = useSelector((state) => state.userReducer.allUsers);
+  const [name, setName] = useState("");
+  const [role, setRole] = useState("");
+
+  const allUsers = useSelector((state) => state.userReducer.allUsers).filter(
+    (user) =>
+      (user.firstName.includes(name.toUpperCase()) ||
+        user.lastName.includes(name.toUpperCase())) &&
+      (role === "banned" ? user.isBanned === true : user.role.includes(role))
+  );
   const [edit, setEdit] = useState(false);
   const [idDelete, setIdDelete] = useState(null);
   const [editedUser, setEditedUser] = useState({});
@@ -26,6 +41,64 @@ const UsersList = () => {
 
   return (
     <div>
+      <div className="sort_section">
+        <div className="sort_radio_buttons">
+          <FormLabel
+            style={{ marginRight: "2rem", fontWeight: "bolder" }}
+            id="demo-radio-buttons-group-label"
+          >
+            Sort By:
+          </FormLabel>
+          <RadioGroup
+            aria-labelledby="demo-radio-buttons-group-label"
+            defaultValue=""
+            name="radio-buttons-group"
+            row={true}
+            onChange={(e) => {
+              setRole(e.target.value);
+            }}
+          >
+            <FormControlLabel value="" control={<Radio />} label="All" />
+            <FormControlLabel
+              value="admin"
+              control={<Radio />}
+              label="Admins"
+            />
+            <FormControlLabel
+              value="client"
+              control={<Radio />}
+              label="Clients"
+            />
+            <FormControlLabel
+              value="worker"
+              control={<Radio />}
+              label="Workers"
+            />
+
+            <FormControlLabel
+              value="banned"
+              control={<Radio />}
+              label="Banned"
+            />
+          </RadioGroup>
+        </div>
+        <div className="sort_radio_buttons">
+          <FormLabel
+            style={{ marginRight: "2rem", fontWeight: "bolder" }}
+            id="demo-radio-buttons-group-label"
+          >
+            Search for user:
+          </FormLabel>
+          <TextField
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
+            id="outlined-basic"
+            variant="outlined"
+            size="small"
+          />
+        </div>
+      </div>
       <table className="zui-table">
         <thead>
           <tr>
@@ -83,6 +156,7 @@ const UsersList = () => {
                   <td>
                     {edit && idDelete === user._id ? (
                       <select
+                        defaultValue={user.role}
                         name="role"
                         id="role"
                         onChange={(e) => {

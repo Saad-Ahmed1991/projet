@@ -13,9 +13,8 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link as LinkR, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/Actions/userActions";
-import LogInAlert from "../Alerts/LogInAlert";
 
 function Copyright(props) {
   return (
@@ -38,7 +37,6 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignInSide() {
-  const [showAlert, setShowAlert] = React.useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleSubmit = (event) => {
@@ -55,6 +53,12 @@ export default function SignInSide() {
       )
     );
   };
+  React.useEffect(() => {
+    let isAuth = localStorage.getItem("token");
+    if (isAuth && isAuth !== null) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
@@ -137,9 +141,7 @@ export default function SignInSide() {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <LinkR to="/user/signup">
-                    {"Don't have an account? Sign Up"}
-                  </LinkR>
+                  <LinkR to="/signup">{"Don't have an account? Sign Up"}</LinkR>
                 </Grid>
               </Grid>
               <Copyright sx={{ mt: 5 }} />

@@ -82,7 +82,7 @@ export default function PrimarySearchAppBar() {
       ) : null}
       {!token ? (
         <LinkR
-          to="/user/signup"
+          to="/signup"
           style={{ textDecoration: "none", color: "inherit" }}
         >
           <MenuItem onClick={handleMenuClose}>Sign up</MenuItem>

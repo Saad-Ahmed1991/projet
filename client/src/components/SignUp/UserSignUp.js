@@ -56,6 +56,12 @@ export default function UserSignUp() {
       )
     );
   };
+  React.useEffect(() => {
+    let isAuth = localStorage.getItem("token");
+    if (isAuth && isAuth !== null) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>

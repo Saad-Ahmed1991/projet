@@ -9,6 +9,9 @@ import {
   GET_CURRENT_SERVICE_FAIL,
   GET_CURRENT_SERVICE_loading,
   GET_CURRENT_SERVICE_SUCCESS,
+  GET_USER_SERVICE_FAIL,
+  GET_USER_SERVICE_LOADING,
+  GET_USER_SERVICE_SUCCESS,
   UPLOAD_MULTIPLE_IMAGES_FAIL,
   UPLOAD_MULTIPLE_IMAGES_LOADING,
   UPLOAD_MULTIPLE_IMAGES_SUCCESS,
@@ -18,6 +21,7 @@ const initialState = {
   error: [],
   currentService: {},
   allServices: [],
+  userService: {},
   loading: false,
   city: "",
   rating: 0,
@@ -86,6 +90,19 @@ export const serviceReducer = (state = initialState, { type, payload }) => {
     case GET_ALL_SERVICES_FAIL: {
       return { ...state, error: payload, loading: false };
     }
+    case GET_USER_SERVICE_LOADING:
+      return {
+        ...state,
+        loading: true,
+      };
+    case GET_USER_SERVICE_FAIL:
+      return { ...state, error: payload, loading: false };
+    case GET_USER_SERVICE_SUCCESS:
+      return {
+        ...state,
+        userService: payload.data,
+        loading: false,
+      };
 
     default:
       return state;

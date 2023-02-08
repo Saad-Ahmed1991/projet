@@ -47,7 +47,7 @@ function App() {
           }
         />
         <Route
-          path="/user/signup"
+          path="/signup"
           element={
             <>
               <NavBar />
@@ -56,7 +56,7 @@ function App() {
           }
         />
         <Route
-          path="/login"
+          path={"/login"}
           element={
             <>
               <NavBar />
