@@ -9,7 +9,11 @@ import {
   GET_USER_SERVICE_FAIL,
   GET_USER_SERVICE_LOADING,
   GET_USER_SERVICE_SUCCESS,
+  UPDATE_PROFESSION_FAIL,
+  UPDATE_PROFESSION_LOADING,
+  UPDATE_PROFESSION_SUCCESS,
 } from "../Consts/serviceConsts";
+import { getProfile } from "./profileActions";
 
 //create new service
 
@@ -133,5 +137,33 @@ export const getUserService = (userId) => async (dispatch) => {
   } catch (error) {
     console.log(error);
     dispatch({ type: GET_USER_SERVICE_FAIL, payload: error });
+  }
+};
+
+//update profession
+export const updateProfession = (profession) => async (dispatch) => {
+  const token = localStorage.getItem("token");
+  dispatch({ type: UPDATE_PROFESSION_LOADING });
+  try {
+    const response = await axios.put(
+      "http://localhost:5000/api/service/updateservice",
+      profession,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    dispatch({
+      type: UPDATE_PROFESSION_SUCCESS,
+      payload: response.data,
+    });
+    dispatch(getProfile());
+  } catch (error) {
+    console.log(error);
+    dispatch({
+      type: UPDATE_PROFESSION_FAIL,
+      payload: error,
+    });
   }
 };

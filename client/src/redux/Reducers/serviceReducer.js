@@ -12,6 +12,9 @@ import {
   GET_USER_SERVICE_FAIL,
   GET_USER_SERVICE_LOADING,
   GET_USER_SERVICE_SUCCESS,
+  UPDATE_PROFESSION_FAIL,
+  UPDATE_PROFESSION_LOADING,
+  UPDATE_PROFESSION_SUCCESS,
   UPLOAD_MULTIPLE_IMAGES_FAIL,
   UPLOAD_MULTIPLE_IMAGES_LOADING,
   UPLOAD_MULTIPLE_IMAGES_SUCCESS,
@@ -103,6 +106,18 @@ export const serviceReducer = (state = initialState, { type, payload }) => {
         userService: payload.data,
         loading: false,
       };
+    case UPDATE_PROFESSION_LOADING:
+      return {
+        ...state,
+        loading: true,
+      };
+    case UPDATE_PROFESSION_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      };
+    case UPDATE_PROFESSION_FAIL:
+      return { ...state, error: payload, loading: false };
 
     default:
       return state;

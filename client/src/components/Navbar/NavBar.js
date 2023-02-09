@@ -180,7 +180,8 @@ export default function PrimarySearchAppBar() {
             {token ? (
               <div style={{ display: "flex", alignItems: "center" }}>
                 <p style={{ margin: "0" }}>
-                  {currentUser.firstName} {currentUser.lastName}
+                  {currentUser.firstName} {currentUser.lastName}{" "}
+                  {`(${currentUser.role} account)`}
                 </p>
               </div>
             ) : null}
@@ -197,7 +198,7 @@ export default function PrimarySearchAppBar() {
               <Avatar
                 alt="Remy Sharp"
                 src={currentProfile.profileImg}
-                sx={{ width: 30, height: 30 }}
+                sx={{ width: 40, height: 40 }}
               />
             </IconButton>
           </Box>

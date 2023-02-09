@@ -93,7 +93,7 @@ router.put("/deleteimage", isAuth(), async (req, res) => {
 // get all services
 
 router.get("/services", async (req, res) => {
-  const category = req.query.category || "";
+  const category = req.query.category.toLowerCase() || "";
   try {
     const services = await Service.find({ profession: { $regex: category } })
       .populate("user", "firstName lastName email")
@@ -114,6 +114,24 @@ router.get("/userservice/:userid", async (req, res) => {
       .populate("user", "firstName lastName email")
       .populate("profile");
     res.send(service);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send(error);
+  }
+});
+
+//update service
+
+router.put("/updateservice", isAuth(), async (req, res) => {
+  try {
+    const service = await Service.updateOne(
+      { user: req.user._id },
+      { ...req.body }
+    );
+    if (!service.modifiedCount) {
+      return res.status(400).send({ msg: "service already updated" });
+    }
+    res.send({ msg: "service updated successfully" });
   } catch (error) {
     console.log(error);
     res.status(400).send(error);

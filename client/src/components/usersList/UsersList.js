@@ -20,6 +20,7 @@ const UsersList = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
+  const currentUser = useSelector((state) => state.userReducer.currentUser);
 
   const allUsers = useSelector((state) => state.userReducer.allUsers).filter(
     (user) =>
@@ -154,7 +155,9 @@ const UsersList = () => {
                   </td>
                   <td>{user.email}</td>
                   <td>
-                    {edit && idDelete === user._id ? (
+                    {currentUser.role === "superAdmin" &&
+                    edit &&
+                    idDelete === user._id ? (
                       <select
                         defaultValue={user.role}
                         name="role"

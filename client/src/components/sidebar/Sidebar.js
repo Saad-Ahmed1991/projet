@@ -9,7 +9,7 @@ import {
   Select,
 } from "@mui/material";
 import logo from "../../logo.png";
-import { cities } from "../Consts/consts";
+import { cities, professions } from "../Consts/consts";
 import SearchIcon from "@mui/icons-material/Search";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import React, { useState } from "react";
@@ -22,6 +22,11 @@ const Sidebar = () => {
   const [rating, setRating] = useState(0);
   const [category, setCategory] = useState("");
   const [city, setCity] = useState("");
+  const handleReset = () => {
+    dispatch(getALLServices("", "", 0));
+    setCategory("");
+    setCity("");
+  };
 
   return (
     <>
@@ -46,9 +51,9 @@ const Sidebar = () => {
                   <MenuItem>
                     <em>None</em>
                   </MenuItem>
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={"plombier"}>Plombier</MenuItem>
+                  {professions.map((profession) => (
+                    <MenuItem value={profession}>{profession}</MenuItem>
+                  ))}
                 </Select>
               </FormControl>
             </div>
@@ -62,15 +67,18 @@ const Sidebar = () => {
                     labelId="demo-simple-select-standard-label"
                     id="demo-simple-select-standard"
                     label="City"
+                    defaultValue={city}
                     onChange={(e) => {
                       setCity(e.target.value);
                     }}
                   >
-                    <MenuItem>
-                      <em>None</em>
+                    <MenuItem value="">
+                      <em>All</em>
                     </MenuItem>
                     {cities.map((city) => (
-                      <MenuItem value={city}>{city}</MenuItem>
+                      <MenuItem key={city} value={city.toLowerCase()}>
+                        {city}
+                      </MenuItem>
                     ))}
                   </Select>
                 </FormControl>
@@ -111,9 +119,7 @@ const Sidebar = () => {
                 }}
                 variant="contained"
                 endIcon={<RestartAltIcon />}
-                onClick={() => {
-                  dispatch(getALLServices("", "", 0));
-                }}
+                onClick={handleReset}
               >
                 Reset
               </Button>

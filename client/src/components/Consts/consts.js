@@ -24,3 +24,16 @@ export const cities = [
   "Tunis",
   "Zaghouan",
 ];
+export const professions = [
+  "Plombier",
+  "Jardinier",
+  "Masson",
+  "Electricien",
+  "Peintre",
+  "Menuisier",
+  "Menuisier en alluminium",
+  "Forgeron",
+  "other",
+  "Mecanicien",
+  "Transporteur",
+];

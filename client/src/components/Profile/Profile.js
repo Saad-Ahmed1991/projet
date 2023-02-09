@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./style.css";
 import avatar from "../../avatar.jpg";
-import SaveIcon from "@mui/icons-material/Save";
+import UploadIcon from "@mui/icons-material/Upload";
 import {
   getProfile,
   updateProfile,
@@ -18,12 +18,15 @@ import {
 } from "@mui/material";
 import {
   getCUrrentService,
+  updateProfession,
   uploadImages,
 } from "../../redux/Actions/serviceActions";
+import { professions } from "../Consts/consts";
 
 const Profile = () => {
   const [edit, setEdit] = useState(false);
   const [images, setImages] = useState([]);
+
   const currentProfile = useSelector(
     (state) => state.profileReducer.currentProfile
   );
@@ -53,7 +56,7 @@ const Profile = () => {
   };
   const dispatch = useDispatch();
   //const idProfile = useParams();
-  const [newProfile, setNewProfile] = useState(currentProfile);
+  const [newProfile, setNewProfile] = useState({});
   const [updatedUser, setUpdatedUser] = useState({});
   const token = localStorage.getItem("token");
   const loading = useSelector((state) => state.profileReducer.loading);
@@ -79,6 +82,14 @@ const Profile = () => {
   const handleUploadImages = () => {
     dispatch(uploadImages(images), setImages([]));
   };
+  const handleUpdateService = (e) => {
+    dispatch(
+      updateProfession({
+        profession: e.target.value,
+      })
+    );
+    setEdit(false);
+  };
   useEffect(() => {
     dispatch(getProfile(token));
     dispatch(getCUrrentService(token));
@@ -101,7 +112,7 @@ const Profile = () => {
                     onClick={() => {
                       dispatch(
                         updateProfile(
-                          [updatedUser, newProfile],
+                          [newProfile, updatedUser],
                           currentProfile._id,
                           setEdit
                         )
@@ -149,32 +160,14 @@ const Profile = () => {
                               label="Birthday"
                               variant="standard"
                               onChange={(e) => {
-                                setUpdatedUser({
-                                  ...updatedUser,
+                                setNewProfile({
+                                  ...newProfile,
                                   birthday: e.target.value,
                                 });
                               }}
                             />
                           ) : (
                             <p>{currentProfile.birthday}</p>
-                          )}
-                        </div>
-                        <div className="media">
-                          <label>Age</label>
-                          {edit ? (
-                            <TextField
-                              id="standard-basic"
-                              label="Standard"
-                              variant="standard"
-                              onChange={(e) => {
-                                setUpdatedUser({
-                                  ...updatedUser,
-                                  age: e.target.value,
-                                });
-                              }}
-                            />
-                          ) : (
-                            <p>35</p>
                           )}
                         </div>
                         <div className="media">
@@ -195,6 +188,29 @@ const Profile = () => {
                             <p>{currentProfile.city}</p>
                           )}
                         </div>
+                        {currentProfile.user &&
+                        currentProfile.user.role === "worker" ? (
+                          <div className="media">
+                            <label>Profession</label>
+                            {edit ? (
+                              <NativeSelect
+                                onChange={handleUpdateService}
+                                inputProps={{
+                                  name: "profession",
+                                  id: "uncontrolled-native",
+                                }}
+                              >
+                                {professions.map((profession) => (
+                                  <option value={profession}>
+                                    {profession}
+                                  </option>
+                                ))}
+                              </NativeSelect>
+                            ) : (
+                              <p>{currentService.profession}</p>
+                            )}
+                          </div>
+                        ) : null}
                         {currentProfile.user &&
                         currentProfile.user.role === "worker" ? (
                           <div
@@ -247,8 +263,8 @@ const Profile = () => {
                               label="Phone"
                               variant="standard"
                               onChange={(e) => {
-                                setUpdatedUser({
-                                  ...updatedUser,
+                                setNewProfile({
+                                  ...newProfile,
                                   phoneNumber: e.target.value,
                                 });
                               }}
@@ -265,8 +281,8 @@ const Profile = () => {
                               label="Adress"
                               variant="standard"
                               onChange={(e) => {
-                                setUpdatedUser({
-                                  ...updatedUser,
+                                setNewProfile({
+                                  ...newProfile,
                                   adress: e.target.value,
                                 });
                               }}
@@ -275,38 +291,6 @@ const Profile = () => {
                             <p>{currentProfile.adress}</p>
                           )}
                         </div>
-                        {currentProfile.user &&
-                        currentProfile.user.role === "worker" ? (
-                          <div className="media">
-                            <label>Profession</label>
-                            {edit ? (
-                              <NativeSelect
-                                inputProps={{
-                                  name: "profession",
-                                  id: "uncontrolled-native",
-                                }}
-                              >
-                                <option value={"electricien"}>
-                                  Electricien
-                                </option>
-                                <option value={"plombier"}>Plombier</option>
-                                <option value={"patissier"}>Patissier</option>
-                                <option value={"peintre"}>Peintre</option>
-                                <option value={"jardinier"}>Jardinier</option>
-                                <option value={"masson"}>Masson</option>
-                                <option value={"menuisier"}>menuisier</option>
-                                <option value={"menuisier en alluminium"}>
-                                  Menuisier en alluminium
-                                </option>
-                                <option value={"forgeron"}>Forgeron</option>
-                                <option value={"masson"}>Masson</option>
-                                <option value={"other"}>Other</option>
-                              </NativeSelect>
-                            ) : (
-                              <p>{currentService.profession}</p>
-                            )}
-                          </div>
-                        ) : null}
                       </div>
                     </div>
                   </div>
@@ -337,9 +321,9 @@ const Profile = () => {
                         onClick={handleProfileImageChange}
                         variant="contained"
                         style={{ width: "10rem" }}
-                        endIcon={<SaveIcon />}
+                        endIcon={<UploadIcon />}
                       >
-                        Save
+                        Upload now!
                       </Button>
                     )}
                   </div>

@@ -88,7 +88,9 @@ const CreateProfile = () => {
                               <em>None</em>
                             </MenuItem>
                             {cities.map((city) => (
-                              <MenuItem value={city}>{city}</MenuItem>
+                              <MenuItem value={city.toLowerCase()}>
+                                {city}
+                              </MenuItem>
                             ))}
                           </Select>
                         </FormControl>

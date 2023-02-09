@@ -11,7 +11,7 @@ const ProtectedRoute = (props) => {
         <div className="loading">
           <CircularProgress />
         </div>
-      ) : currentUser.role === "admin" ? (
+      ) : currentUser.role === "admin" || currentUser.role === "superAdmin" ? (
         props.children
       ) : (
         <Navigate to={-1} />
