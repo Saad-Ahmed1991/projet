@@ -1,19 +1,26 @@
 import { CircularProgress, Rating } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import avatar from "../../avatar.jpg";
-import { getALLServices } from "../../redux/Actions/serviceActions";
+import {
+  getALLServices,
+  getUserService,
+} from "../../redux/Actions/serviceActions";
 
 import "../Profile/style.css";
 import UserImagesList from "../UserImageList/UserImageList";
 
 const UserProfile = () => {
-  const dispatch = useDispatch();
-  const token = localStorage.getItem("token");
   const loading = useSelector((state) => state.serviceReducer.loading);
   const service = useSelector((state) => state.serviceReducer.userService);
+  const dispatch = useDispatch();
+  const obj = useParams();
+  const token = localStorage.getItem("token");
+
   useEffect(() => {
     dispatch(getALLServices("", "", 0));
+    dispatch(getUserService(obj.id));
   }, []);
 
   return (
@@ -28,13 +35,14 @@ const UserProfile = () => {
                 <div className="col-lg-6">
                   <div className="about-text go-to">
                     <h3 className="dark-color">
-                      {service.user.firstName} {service.user.lastName}
+                      {service.user && service.user.firstName}{" "}
+                      {service.user && service.user.lastName}
                     </h3>
                     <div className="row about-list">
                       <div className="col-md-6">
                         <div className="media">
                           <label>Birthday</label>
-                          <p>{service.profile.birthday}</p>
+                          <p>{service.profile && service.profile.birthday}</p>
                         </div>
                         <div className="media">
                           <label>Profession</label>
@@ -42,7 +50,7 @@ const UserProfile = () => {
                         </div>
                         <div className="media">
                           <label>City</label>
-                          <p>{service.profile.city}</p>
+                          <p>{service.profile && service.profile.city}</p>
                         </div>
                         <div
                           className="media"
@@ -64,12 +72,14 @@ const UserProfile = () => {
                       <div className="col-md-6">
                         <div className="media">
                           <label>E-mail</label>
-                          <p>{service.user.email}</p>
+                          <p>{service.user && service.user.email}</p>
                         </div>
                         <div className="media">
                           <label>Phone</label>
                           {token ? (
-                            <p>{service.profile.phoneNumber}</p>
+                            <p>
+                              {service.profile && service.profile.phoneNumber}
+                            </p>
                           ) : (
                             <>
                               <p className="phoneNumber">
@@ -80,7 +90,7 @@ const UserProfile = () => {
                         </div>
                         <div className="media">
                           <label>Address</label>
-                          <p>{service.profile.adress}</p>
+                          <p>{service.profile && service.profile.adress}</p>
                         </div>
                       </div>
                     </div>
@@ -90,7 +100,10 @@ const UserProfile = () => {
                   <div className="about-avatar">
                     <img
                       className="profile_img"
-                      src={service.profile.profileImg || avatar}
+                      src={
+                        (service.profile && service.profile.profileImg) ||
+                        avatar
+                      }
                       title=""
                       alt=""
                     />

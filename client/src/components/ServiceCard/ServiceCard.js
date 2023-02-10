@@ -16,7 +16,7 @@ export default function ServiceCard({ service }) {
   const navigate = useNavigate();
   const handleClick = (userId) => {
     dispatch(getUserService(`${userId}`));
-    navigate(`/userprofile/${service._id}`);
+    navigate(`/userprofile/${service.user._id}`);
   };
   return (
     <Card
