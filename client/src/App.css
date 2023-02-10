@@ -3,11 +3,19 @@
   font-family: sans-serif;
   background-color: rgb(225, 225, 221);
 
+
 }
-
-
-
-
+.home_btn{
+  background-color: transparent;
+  border-radius: 0.9rem;
+  padding-inline: 3rem;
+  padding-block: 0.1rem;
+  border: 2px solid white;
+  margin-left: 0.5rem;
+}
+.navigation{
+  background-color: rgb(49, 147, 251) !important;
+}
 
 .App-header {
   background-color: #282c34;

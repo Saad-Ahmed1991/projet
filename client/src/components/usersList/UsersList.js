@@ -26,7 +26,9 @@ const UsersList = () => {
     (user) =>
       (user.firstName.includes(name.toUpperCase()) ||
         user.lastName.includes(name.toUpperCase())) &&
-      (role === "banned" ? user.isBanned === true : user.role.includes(role))
+      (role === "banned"
+        ? user.isBanned === true
+        : user.role.toLowerCase().includes(role.toLowerCase()))
   );
   const [edit, setEdit] = useState(false);
   const [idDelete, setIdDelete] = useState(null);

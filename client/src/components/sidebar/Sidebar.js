@@ -34,7 +34,9 @@ const Sidebar = () => {
         <img className="sidebar_logo" src={logo} alt="logo" />
         <FormGroup>
           <div className="sidebar_items">
-            <FormLabel> Filter by</FormLabel>
+            <FormLabel style={{ color: "black", fontWeight: "bold" }}>
+              Filter by
+            </FormLabel>
             <div>
               <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
                 <InputLabel id="demo-simple-select-standard-label">
@@ -52,7 +54,9 @@ const Sidebar = () => {
                     <em>None</em>
                   </MenuItem>
                   {professions.map((profession) => (
-                    <MenuItem value={profession}>{profession}</MenuItem>
+                    <MenuItem key={profession} value={profession}>
+                      {profession}
+                    </MenuItem>
                   ))}
                 </Select>
               </FormControl>

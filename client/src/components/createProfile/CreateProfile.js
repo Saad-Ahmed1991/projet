@@ -5,7 +5,7 @@ import {
   createProfile,
   createWorkerProfile,
 } from "../../redux/Actions/profileActions";
-import { cities } from "../Consts/consts";
+import { cities, professions } from "../Consts/consts";
 import {
   FormControl,
   InputLabel,
@@ -137,16 +137,32 @@ const CreateProfile = () => {
                         />
                       </div>
                       {currentUser.role === "worker" ? (
-                        <div className="media">
-                          <label>Profession</label>
-                          <TextField
-                            id="standard-basic"
-                            label="Profession"
+                        <div>
+                          <FormControl
                             variant="standard"
-                            onChange={(e) => {
-                              setProfession(e.target.value);
-                            }}
-                          />
+                            sx={{ m: 1, minWidth: 120 }}
+                          >
+                            <InputLabel id="demo-simple-select-standard-label">
+                              Category
+                            </InputLabel>
+                            <Select
+                              labelId="demo-simple-select-standard-label"
+                              id="demo-simple-select-standard"
+                              label="Category"
+                              onChange={(e) => {
+                                setProfession(e.target.value);
+                              }}
+                            >
+                              <MenuItem>
+                                <em>None</em>
+                              </MenuItem>
+                              {professions.map((profession) => (
+                                <MenuItem value={profession}>
+                                  {profession}
+                                </MenuItem>
+                              ))}
+                            </Select>
+                          </FormControl>
                         </div>
                       ) : null}
                     </div>

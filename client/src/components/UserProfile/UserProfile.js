@@ -1,4 +1,4 @@
-import { Rating } from "@mui/material";
+import { CircularProgress, Rating } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import avatar from "../../avatar.jpg";
@@ -19,7 +19,7 @@ const UserProfile = () => {
   return (
     <>
       {loading ? (
-        <>loading...</>
+        <CircularProgress />
       ) : (
         <div>
           <section className="section about-section gray-bg" id="about">
@@ -37,8 +37,8 @@ const UserProfile = () => {
                           <p>{service.profile.birthday}</p>
                         </div>
                         <div className="media">
-                          <label>Age</label>
-                          <p>35</p>
+                          <label>Profession</label>
+                          <p>{service.profession}</p>
                         </div>
                         <div className="media">
                           <label>City</label>
@@ -73,7 +73,7 @@ const UserProfile = () => {
                           ) : (
                             <>
                               <p className="phoneNumber">
-                                *Login to see contact number*
+                                *Sign in to see contact number*
                               </p>
                             </>
                           )}
@@ -81,10 +81,6 @@ const UserProfile = () => {
                         <div className="media">
                           <label>Address</label>
                           <p>{service.profile.adress}</p>
-                        </div>
-                        <div className="media">
-                          <label>Profession</label>
-                          <p>{service.profession}</p>
                         </div>
                       </div>
                     </div>

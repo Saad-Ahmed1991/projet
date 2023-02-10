@@ -7,7 +7,7 @@ import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import { red } from "@mui/material/colors";
 import { FormLabel, Rating } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getUserService } from "../../redux/Actions/serviceActions";
 
@@ -53,7 +53,10 @@ export default function ServiceCard({ service }) {
             readOnly
           />
         </IconButton>
-        <FormLabel aria-label="city">
+        <FormLabel
+          style={{ fontWeight: "bold", marginLeft: "4rem" }}
+          aria-label="city"
+        >
           {service.profile.city.charAt(0).toUpperCase() +
             service.profile.city.slice(1)}
         </FormLabel>

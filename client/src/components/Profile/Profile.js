@@ -237,23 +237,9 @@ const Profile = () => {
                       <div className="col-md-6">
                         <div className="media">
                           <label>E-mail</label>
-                          {edit ? (
-                            <TextField
-                              id="standard-basic"
-                              label="Email"
-                              variant="standard"
-                              onChange={(e) => {
-                                setUpdatedUser({
-                                  ...updatedUser,
-                                  email: e.target.value,
-                                });
-                              }}
-                            />
-                          ) : (
-                            <p>
-                              {currentProfile.user && currentProfile.user.email}
-                            </p>
-                          )}
+                          <p>
+                            {currentProfile.user && currentProfile.user.email}
+                          </p>
                         </div>
                         <div className="media">
                           <label>Phone</label>
