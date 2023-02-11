@@ -264,17 +264,17 @@ const Profile = () => {
                           {edit ? (
                             <TextField
                               id="standard-basic"
-                              label="Adress"
+                              label="Address"
                               variant="standard"
                               onChange={(e) => {
                                 setNewProfile({
                                   ...newProfile,
-                                  adress: e.target.value,
+                                  address: e.target.value,
                                 });
                               }}
                             />
                           ) : (
-                            <p>{currentProfile.adress}</p>
+                            <p>{currentProfile.address}</p>
                           )}
                         </div>
                       </div>

@@ -53,13 +53,12 @@ export default function ServiceCard({ service }) {
             readOnly
           />
         </IconButton>
-        <FormLabel
-          style={{ fontWeight: "bold", marginLeft: "4rem" }}
-          aria-label="city"
-        >
-          {service.profile.city.charAt(0).toUpperCase() +
-            service.profile.city.slice(1)}
-        </FormLabel>
+        <div className="city_label">
+          <FormLabel style={{ fontWeight: "bold" }} aria-label="city">
+            {service.profile.city.charAt(0).toUpperCase() +
+              service.profile.city.slice(1)}
+          </FormLabel>
+        </div>
       </CardActions>
     </Card>
   );

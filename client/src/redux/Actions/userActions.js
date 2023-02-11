@@ -14,6 +14,7 @@ import {
   SIGN_UP_FAIL,
   SIGN_UP_SUCCESS,
 } from "../Consts/userConsts";
+import { setSnackbar } from "./snackBarActions";
 
 //user sign up
 
@@ -24,10 +25,12 @@ export const userSignUp = (newUser, navigate) => async (dispatch) => {
       newUser
     );
     dispatch({ type: SIGN_UP_SUCCESS, payload: respose.data });
+    dispatch(setSnackbar(true, "success", "account created successfully"));
     navigate("/login");
   } catch (error) {
     console.log(error);
     dispatch({ type: SIGN_UP_FAIL, payload: error });
+    dispatch(setSnackbar(true, "error", error.response.data.errors[0].msg));
   }
 };
 
@@ -40,7 +43,11 @@ export const logIn = (user, navigate) => async (dispatch) => {
       user
     );
     dispatch({ type: LOG_IN_SUCCESS, payload: response.data });
-    if (response.data.user.role === "admin") {
+
+    if (
+      response.data.user.role === "admin" ||
+      response.data.user.role === "superAdmin"
+    ) {
       const token = localStorage.getItem("token");
       dispatch(getAllUsers(token));
     }
@@ -53,6 +60,13 @@ export const logIn = (user, navigate) => async (dispatch) => {
   } catch (error) {
     console.log("log in response", error);
     dispatch({ type: LOG_IN_FAIL, payload: error });
+    dispatch(
+      setSnackbar(
+        true,
+        "error",
+        error.response.data.msg || error.response.data.errors[0].msg
+      )
+    );
   }
 };
 

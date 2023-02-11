@@ -1,4 +1,5 @@
 import axios from "axios";
+import { setSnackbar } from "./snackBarActions";
 
 //create profile
 
@@ -17,6 +18,7 @@ export const createProfile = (profile, navigate) => async (dispatch) => {
     );
 
     dispatch({ type: "CREATE_PROFILE_SUCCESS", payload: response.data });
+    dispatch(setSnackbar(true, "success", "profile created!"));
     navigate("/profile");
   } catch (error) {
     console.log(error);
@@ -45,6 +47,7 @@ export const createWorkerProfile =
         type: "CREATE_WORKER_PROFILE_SUCCESS",
         payload: response.data,
       });
+      dispatch(setSnackbar(true, "success", "profile created!"));
       navigate("/profile");
     } catch (error) {
       console.log(error);

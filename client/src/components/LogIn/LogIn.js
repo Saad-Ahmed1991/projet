@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link as LinkR, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/Actions/userActions";
+import { setSnackbar } from "../../redux/Actions/snackBarActions";
 
 function Copyright(props) {
   return (

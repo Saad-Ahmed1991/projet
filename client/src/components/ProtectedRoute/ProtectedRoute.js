@@ -3,11 +3,14 @@ import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
 const ProtectedRoute = (props) => {
+  const token = localStorage.getItem("token");
   const currentUser = useSelector((state) => state.userReducer.currentUser);
 
   return (
     <>
-      {!currentUser.role ? (
+      {!token ? (
+        <Navigate to={-1} />
+      ) : !currentUser.role ? (
         <div className="loading">
           <CircularProgress />
         </div>

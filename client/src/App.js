@@ -16,6 +16,7 @@ import ServiceList from "./components/ServiceList/ServiceList";
 import Sidebar from "./components/sidebar/Sidebar";
 import Layout from "./components/Layout/Layout";
 import UserProfile from "./components/UserProfile/UserProfile";
+import Snackbar from "./components/Snackbar/SnackBar";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ function App() {
 
   return (
     <div className="App">
+      <Snackbar />
       <Routes>
         <Route
           path="/"

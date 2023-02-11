@@ -31,105 +31,107 @@ const Sidebar = () => {
   return (
     <>
       <div className="sidebar">
-        <img className="sidebar_logo" src={logo} alt="logo" />
-        <FormGroup>
-          <div className="sidebar_items">
-            <FormLabel style={{ color: "black", fontWeight: "bold" }}>
-              Filter by
-            </FormLabel>
-            <div>
-              <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-                <InputLabel id="demo-simple-select-standard-label">
-                  Category
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-standard-label"
-                  id="demo-simple-select-standard"
-                  label="Category"
-                  onChange={(e) => {
-                    setCategory(e.target.value);
-                  }}
-                >
-                  <MenuItem>
-                    <em>None</em>
-                  </MenuItem>
-                  {professions.map((profession) => (
-                    <MenuItem key={profession} value={profession}>
-                      {profession}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </div>
-            {category ? (
+        <div className="fixed_sidebar">
+          <img className="sidebar_logo" src={logo} alt="logo" />
+          <FormGroup>
+            <div className="sidebar_items">
+              <FormLabel style={{ color: "black", fontWeight: "bold" }}>
+                Filter by
+              </FormLabel>
               <div>
                 <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
                   <InputLabel id="demo-simple-select-standard-label">
-                    City
+                    Category
                   </InputLabel>
                   <Select
                     labelId="demo-simple-select-standard-label"
                     id="demo-simple-select-standard"
-                    label="City"
-                    defaultValue={city}
+                    label="Category"
                     onChange={(e) => {
-                      setCity(e.target.value);
+                      setCategory(e.target.value);
                     }}
                   >
-                    <MenuItem value="">
-                      <em>All</em>
+                    <MenuItem>
+                      <em>None</em>
                     </MenuItem>
-                    {cities.map((city) => (
-                      <MenuItem key={city} value={city.toLowerCase()}>
-                        {city}
+                    {professions.map((profession) => (
+                      <MenuItem key={profession} value={profession}>
+                        {profession}
                       </MenuItem>
                     ))}
                   </Select>
                 </FormControl>
               </div>
-            ) : null}
-            {category ? (
+              {category ? (
+                <div>
+                  <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+                    <InputLabel id="demo-simple-select-standard-label">
+                      City
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-standard-label"
+                      id="demo-simple-select-standard"
+                      label="City"
+                      defaultValue={city}
+                      onChange={(e) => {
+                        setCity(e.target.value);
+                      }}
+                    >
+                      <MenuItem value="">
+                        <em>All</em>
+                      </MenuItem>
+                      {cities.map((city) => (
+                        <MenuItem key={city} value={city.toLowerCase()}>
+                          {city}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </div>
+              ) : null}
+              {category ? (
+                <div>
+                  <InputLabel
+                    style={{ marginBottom: "1rem" }}
+                    id="demo-simple-select-standard-label"
+                  >
+                    Rating
+                  </InputLabel>
+                  <Rating
+                    size="large"
+                    onChange={(e) => {
+                      setRating(e.target.value);
+                    }}
+                  />
+                </div>
+              ) : null}
               <div>
-                <InputLabel
-                  style={{ marginBottom: "1rem" }}
-                  id="demo-simple-select-standard-label"
-                >
-                  Rating
-                </InputLabel>
-                <Rating
-                  size="large"
-                  onChange={(e) => {
-                    setRating(e.target.value);
+                <Button
+                  style={{ width: "12rem", marginTop: "2rem" }}
+                  variant="contained"
+                  endIcon={<SearchIcon />}
+                  onClick={() => {
+                    dispatch(getALLServices(category, city, rating));
                   }}
-                />
+                >
+                  Search
+                </Button>
+                <Button
+                  style={{
+                    width: "12rem",
+                    marginTop: "2rem",
+                    backgroundColor: "limegreen",
+                  }}
+                  variant="contained"
+                  endIcon={<RestartAltIcon />}
+                  onClick={handleReset}
+                >
+                  Reset
+                </Button>
               </div>
-            ) : null}
-            <div>
-              <Button
-                style={{ width: "12rem", marginTop: "2rem" }}
-                variant="contained"
-                endIcon={<SearchIcon />}
-                onClick={() => {
-                  dispatch(getALLServices(category, city, rating));
-                }}
-              >
-                Search
-              </Button>
-              <Button
-                style={{
-                  width: "12rem",
-                  marginTop: "2rem",
-                  backgroundColor: "limegreen",
-                }}
-                variant="contained"
-                endIcon={<RestartAltIcon />}
-                onClick={handleReset}
-              >
-                Reset
-              </Button>
             </div>
-          </div>
-        </FormGroup>
+          </FormGroup>
+        </div>
       </div>
     </>
   );

@@ -1,8 +1,9 @@
-import { CircularProgress, Rating } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import avatar from "../../avatar.jpg";
+
 import {
   getALLServices,
   getUserService,
@@ -61,18 +62,21 @@ const UserProfile = () => {
                           }}
                         >
                           <label>Rating</label>
-                          <Rating
-                            name="read-only"
-                            precision={0.5}
-                            value={service.ratingNumber}
-                            readOnly
-                          />
+                          <p>rating</p>
                         </div>
                       </div>
                       <div className="col-md-6">
                         <div className="media">
                           <label>E-mail</label>
-                          <p>{service.user && service.user.email}</p>
+                          {token ? (
+                            <p>{service.user && service.user.email}</p>
+                          ) : (
+                            <>
+                              <p className="phoneNumber">
+                                *Sign in to see email address*
+                              </p>
+                            </>
+                          )}
                         </div>
                         <div className="media">
                           <label>Phone</label>
@@ -90,7 +94,7 @@ const UserProfile = () => {
                         </div>
                         <div className="media">
                           <label>Address</label>
-                          <p>{service.profile && service.profile.adress}</p>
+                          <p>{service.profile && service.profile.address}</p>
                         </div>
                       </div>
                     </div>

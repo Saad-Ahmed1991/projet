@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import SaveIcon from "@mui/icons-material/Save";
 import CloseIcon from "@mui/icons-material/Close";
 import "./style.css";
-import { deleteUser, editUser } from "../../redux/Actions/userActions";
+import {
+  deleteUser,
+  editUser,
+  getAllUsers,
+} from "../../redux/Actions/userActions";
 import NotInterestedIcon from "@mui/icons-material/NotInterested";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import {
@@ -18,6 +22,7 @@ import {
 
 const UsersList = () => {
   const dispatch = useDispatch();
+  const token = localStorage.getItem("token");
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
   const currentUser = useSelector((state) => state.userReducer.currentUser);
@@ -41,6 +46,9 @@ const UsersList = () => {
     setIdDelete(id);
     setEdit(!edit);
   };
+  useEffect(() => {
+    dispatch(getAllUsers(token));
+  }, []);
 
   return (
     <div>

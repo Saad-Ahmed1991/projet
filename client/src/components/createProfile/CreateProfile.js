@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { getCurrentUser } from "../../redux/Actions/userActions";
+import { setSnackbar } from "../../redux/Actions/snackBarActions";
 const CreateProfile = () => {
   const navigate = useNavigate();
   const currentUser = useSelector((state) => state.userReducer.currentUser);
@@ -126,12 +127,12 @@ const CreateProfile = () => {
                         <label>Address</label>
                         <TextField
                           id="standard-basic"
-                          label="Adress"
+                          label="Address"
                           variant="standard"
                           onChange={(e) => {
                             setProfile({
                               ...profile,
-                              adress: e.target.value,
+                              address: e.target.value,
                             });
                           }}
                         />

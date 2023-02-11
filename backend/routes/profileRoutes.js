@@ -5,6 +5,7 @@ const Service = require("../models/Service");
 const router = express.Router();
 const isAuth = require("../middlewares/isAuth");
 const User = require("../models/User");
+const { validator, workerProfileRules } = require("../middlewares/validator");
 
 router.get("/test", (req, res) => {
   res.send("router user test");

@@ -1,4 +1,5 @@
 const express = require("express");
+const { validator, serviceRules } = require("../middlewares/validator");
 
 const { cloudinary } = require("../utils/cloudinary");
 const Profile = require("../models/Profile");
