@@ -10,8 +10,10 @@ import { FormLabel, Rating } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getUserService } from "../../redux/Actions/serviceActions";
+import PhoneIphoneTwoToneIcon from "@mui/icons-material/PhoneIphoneTwoTone";
 
 export default function ServiceCard({ service }) {
+  const token = localStorage.getItem("token");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleClick = (userId) => {
@@ -21,7 +23,7 @@ export default function ServiceCard({ service }) {
   return (
     <Card
       onClick={() => handleClick(service.user._id)}
-      sx={{ width: 280, backgroundColor: "lightgrey", cursor: "pointer" }}
+      sx={{ width: 235, backgroundColor: "lightgrey", cursor: "pointer" }}
     >
       <CardHeader
         avatar={
@@ -45,14 +47,21 @@ export default function ServiceCard({ service }) {
         alt=""
       />
       <CardActions disableSpacing>
-        <IconButton aria-label="Rating">
-          <Rating
-            name="read-only"
-            precision={0.5}
-            value={service.totalRating / service.ratingNumber}
-            readOnly
-          />
-        </IconButton>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <PhoneIphoneTwoToneIcon />
+          {token ? (
+            service.profile.phoneNumber
+          ) : (
+            <p style={{ margin: 0 }}>********</p>
+          )}
+        </div>
+
         <div className="city_label">
           <FormLabel style={{ fontWeight: "bold" }} aria-label="city">
             {service.profile.city.charAt(0).toUpperCase() +

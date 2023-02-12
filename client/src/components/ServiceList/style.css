@@ -1,9 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
 .serviceList{
     display: flex;
-    gap: 4rem;
-    padding-left: 4rem;
+    gap: 2rem;
+    padding-left: 2rem;
     flex-wrap: wrap;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
     padding-block: 2rem;
     background-color: rgb(225, 225, 221);
+    border-radius: 2rem;
+
+}
+.service_header{
+    height: 10rem;
+    width: 50%;
+    padding: 1rem;
 }

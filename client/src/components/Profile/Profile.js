@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./style.css";
 import avatar from "../../avatar.jpg";
 import UploadIcon from "@mui/icons-material/Upload";
+import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
 import {
   getProfile,
   updateProfile,
@@ -25,14 +26,16 @@ import { professions } from "../Consts/consts";
 
 const Profile = () => {
   const [edit, setEdit] = useState(false);
-  const [images, setImages] = useState([]);
-
+  const [nameEdit, setNameEdit] = useState(false);
   const currentProfile = useSelector(
     (state) => state.profileReducer.currentProfile
   );
   const currentService = useSelector(
     (state) => state.serviceReducer.currentService
   );
+
+  const [images, setImages] = useState([]);
+
   const [previewSource, setPreviewSource] = useState("");
   const handleFileInputChange = (e) => {
     const file = e.target.files[0];
@@ -90,6 +93,7 @@ const Profile = () => {
     );
     setEdit(false);
   };
+
   useEffect(() => {
     dispatch(getProfile(token));
     dispatch(getCUrrentService(token));
@@ -146,10 +150,37 @@ const Profile = () => {
               <div className="row align-items-center flex-row-reverse">
                 <div className="col-lg-6">
                   <div className="about-text go-to">
-                    <h3 className="dark-color">
-                      {currentProfile.user && currentProfile.user.firstName}{" "}
-                      {currentProfile.user && currentProfile.user.lastName}
-                    </h3>
+                    <div className="profile_name">
+                      {!nameEdit ? (
+                        <h3 className="dark-color">
+                          {currentProfile.user && currentProfile.user.firstName}{" "}
+                          {currentProfile.user && currentProfile.user.lastName}
+                        </h3>
+                      ) : (
+                        <>
+                          <TextField
+                            id="standard-basic"
+                            variant="standard"
+                            placeholder="first name"
+                          />
+                          <TextField
+                            id="standard-basic"
+                            placeholder="last name"
+                            variant="standard"
+                          />
+                        </>
+                      )}
+                      <button
+                        onClick={() => {
+                          setNameEdit(!nameEdit);
+                        }}
+                        className="action_btn"
+                      >
+                        <ModeEditOutlineOutlinedIcon
+                          style={{ color: "blue" }}
+                        />
+                      </button>
+                    </div>
                     <div className="row about-list">
                       <div className="col-md-6">
                         <div className="media">
@@ -157,7 +188,7 @@ const Profile = () => {
                           {edit ? (
                             <TextField
                               id="standard-basic"
-                              label="Birthday"
+                              placeholder={currentProfile.birthday}
                               variant="standard"
                               onChange={(e) => {
                                 setNewProfile({
@@ -175,7 +206,7 @@ const Profile = () => {
                           {edit ? (
                             <TextField
                               id="standard-basic"
-                              label="City"
+                              placeholder={currentProfile.city}
                               variant="standard"
                               onChange={(e) => {
                                 setNewProfile({
@@ -211,28 +242,6 @@ const Profile = () => {
                             )}
                           </div>
                         ) : null}
-                        {currentProfile.user &&
-                        currentProfile.user.role === "worker" ? (
-                          <div
-                            className="media"
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                              alignItems: "center",
-                            }}
-                          >
-                            <label>Rating</label>
-                            <Rating
-                              name="read-only"
-                              precision={0.5}
-                              value={
-                                currentService.totalRating /
-                                currentService.ratingNumber
-                              }
-                              readOnly
-                            />
-                          </div>
-                        ) : null}
                       </div>
                       <div className="col-md-6">
                         <div className="media">
@@ -246,8 +255,8 @@ const Profile = () => {
                           {edit ? (
                             <TextField
                               id="standard-basic"
-                              label="Phone"
                               variant="standard"
+                              placeholder={currentProfile.phoneNumber}
                               onChange={(e) => {
                                 setNewProfile({
                                   ...newProfile,
@@ -264,8 +273,8 @@ const Profile = () => {
                           {edit ? (
                             <TextField
                               id="standard-basic"
-                              label="Address"
                               variant="standard"
+                              placeholder={currentProfile.address}
                               onChange={(e) => {
                                 setNewProfile({
                                   ...newProfile,
@@ -317,20 +326,17 @@ const Profile = () => {
               </div>
               <div className="counter">
                 <div className="row">
-                  <div className="col-6 col-lg-3">
+                  <div className="col-6 col-lg-3 created_on ">
                     <div className="count-data text-center">
-                      <h6 className="count h2" data-to={500} data-speed={500}>
-                        500
+                      <h6 className="count h2 " data-to={150} data-speed={150}>
+                        Account created on
                       </h6>
-                      <p className="m-0px font-w-600">Following</p>
-                    </div>
-                  </div>
-                  <div className="col-6 col-lg-3">
-                    <div className="count-data text-center">
-                      <h6 className="count h2" data-to={150} data-speed={150}>
-                        150
-                      </h6>
-                      <p className="m-0px font-w-600">Last Time Connected</p>
+                      <p className="m-0px font-w-600">
+                        {currentProfile.user &&
+                          currentProfile.user.createdOn
+                            .substring(0, 19)
+                            .replace("T", " ")}
+                      </p>
                     </div>
                   </div>
                 </div>

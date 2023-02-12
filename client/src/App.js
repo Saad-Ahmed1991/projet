@@ -17,6 +17,7 @@ import Sidebar from "./components/sidebar/Sidebar";
 import Layout from "./components/Layout/Layout";
 import UserProfile from "./components/UserProfile/UserProfile";
 import Snackbar from "./components/Snackbar/SnackBar";
+import Home from "./components/Home/Home";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,8 +37,9 @@ function App() {
     <div className="App">
       <Snackbar />
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route
-          path="/"
+          path="/home"
           element={
             <>
               <NavBar />
@@ -96,7 +98,7 @@ function App() {
           }
         />
         <Route
-          path="/userslist"
+          path="/dashboard"
           element={
             <>
               <ProtectedRoute>

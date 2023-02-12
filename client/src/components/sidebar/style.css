@@ -6,6 +6,7 @@ min-height: 700px !important;
 display: flex;
 flex-direction: column;
 align-items: center;
+border-radius: 2rem;
 }
 .sidebar_items{
     display: flex;
@@ -14,6 +15,6 @@ align-items: center;
 
 }
 .sidebar_logo{
-    width: 16rem;
+    width: 13rem;
     aspect-ratio: 1;
 }

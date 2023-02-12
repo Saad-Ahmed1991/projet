@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+
+.background{
+    width: 100%;
+    height: 100vh;
+}
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.content{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+.overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.3)
+}
+.explore_btn{
+    background: none;
+    border: 0.250rem solid white;
+    text-decoration: none;
+    display: inline-block;
+    color: white;
+    font-size: 2rem;
+    font-family: 'Secular One', sans-serif;
+    padding: 0.875rem 4.375rem;
+    border-radius: 3.125rem;
+    margin-top: 1.25rem;
+    transition: 0.5s;
+}
+.explore_btn:hover{
+    -webkit-text-stroke: 2px white;
+    color: #f3bd36;
+    border: 0.250rem solid #f3bd36;
+}
+.home_title{
+    font-size: 6rem;
+    font-family: 'Secular One', sans-serif;
+    text-decoration: underline;
+    letter-spacing: 0.25rem;
+    color: white;
+    font-weight: 600;
+    transition: 0.5s;
+    user-select: none;
+}
+.home_title:hover{
+    -webkit-text-stroke: 0.125rem white;
+    color: transparent;
+}
+.home_logo_img{
+    width: 18.75rem;
+    aspect-ratio: 1;
+    user-select: none;
+    pointer-events: none;
+}

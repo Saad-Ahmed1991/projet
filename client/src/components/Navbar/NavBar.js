@@ -71,10 +71,10 @@ export default function PrimarySearchAppBar() {
       ) : null}
       {currentUser.role === "admin" || currentUser.role === "superAdmin" ? (
         <LinkR
-          to="/userslist"
+          to="/dashboard"
           style={{ textDecoration: "none", color: "inherit" }}
         >
-          <MenuItem onClick={handleMenuClose}>Users list</MenuItem>
+          <MenuItem onClick={handleMenuClose}>Dashboard</MenuItem>
         </LinkR>
       ) : null}
       {!token ? (
@@ -141,7 +141,7 @@ export default function PrimarySearchAppBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" className="navigation">
         <Toolbar>
-          <LinkR to="/">
+          <LinkR to="/home">
             <button className="home_btn">
               <HomeIcon fontSize="large" style={{ color: "white" }} />
             </button>

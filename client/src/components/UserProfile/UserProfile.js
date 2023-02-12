@@ -53,17 +53,6 @@ const UserProfile = () => {
                           <label>City</label>
                           <p>{service.profile && service.profile.city}</p>
                         </div>
-                        <div
-                          className="media"
-                          style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                          }}
-                        >
-                          <label>Rating</label>
-                          <p>rating</p>
-                        </div>
                       </div>
                       <div className="col-md-6">
                         <div className="media">
@@ -116,20 +105,17 @@ const UserProfile = () => {
               </div>
               <div className="counter">
                 <div className="row">
-                  <div className="col-6 col-lg-3">
+                  <div className="col-6 col-lg-3 created_on ">
                     <div className="count-data text-center">
-                      <h6 className="count h2" data-to={500} data-speed={500}>
-                        500
+                      <h6 className="count h2 " data-to={150} data-speed={150}>
+                        Account created on
                       </h6>
-                      <p className="m-0px font-w-600">Following</p>
-                    </div>
-                  </div>
-                  <div className="col-6 col-lg-3">
-                    <div className="count-data text-center">
-                      <h6 className="count h2" data-to={150} data-speed={150}>
-                        150
-                      </h6>
-                      <p className="m-0px font-w-600">Last Time Connected</p>
+                      <p className="m-0px font-w-600">
+                        {service.user &&
+                          service.user.createdOn
+                            .substring(0, 19)
+                            .replace("T", " ")}
+                      </p>
                     </div>
                   </div>
                 </div>

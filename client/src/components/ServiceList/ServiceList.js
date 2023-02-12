@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getALLServices } from "../../redux/Actions/serviceActions";
 import ServiceCard from "../ServiceCard/ServiceCard";
+import service_header from "../../assets/service_header.png";
 import "./style.css";
 
 const ServiceList = () => {
@@ -23,7 +24,7 @@ const ServiceList = () => {
   return (
     <div>
       <div>
-        <h1>Looking for a service?</h1>
+        <img className="service_header" src={service_header} alt="" />
       </div>
       <div className="serviceList">
         {allServices

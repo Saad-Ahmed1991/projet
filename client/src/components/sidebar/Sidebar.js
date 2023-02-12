@@ -16,6 +16,7 @@ import React, { useState } from "react";
 import "./style.css";
 import { useDispatch } from "react-redux";
 import { getALLServices } from "../../redux/Actions/serviceActions";
+import home_logo_black from "../../assets/home_logo_black.png";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ const Sidebar = () => {
     <>
       <div className="sidebar">
         <div className="fixed_sidebar">
-          <img className="sidebar_logo" src={logo} alt="logo" />
+          <img className="sidebar_logo" src={home_logo_black} alt="logo" />
           <FormGroup>
             <div className="sidebar_items">
               <FormLabel style={{ color: "black", fontWeight: "bold" }}>
@@ -87,22 +88,6 @@ const Sidebar = () => {
                       ))}
                     </Select>
                   </FormControl>
-                </div>
-              ) : null}
-              {category ? (
-                <div>
-                  <InputLabel
-                    style={{ marginBottom: "1rem" }}
-                    id="demo-simple-select-standard-label"
-                  >
-                    Rating
-                  </InputLabel>
-                  <Rating
-                    size="large"
-                    onChange={(e) => {
-                      setRating(e.target.value);
-                    }}
-                  />
                 </div>
               ) : null}
               <div>

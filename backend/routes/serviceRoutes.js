@@ -112,7 +112,7 @@ router.get("/userservice/:userid", async (req, res) => {
   const userId = req.params.userid;
   try {
     const service = await Service.findOne({ user: userId })
-      .populate("user", "firstName lastName email")
+      .populate("user", "firstName lastName email createdOn")
       .populate("profile");
     res.send(service);
   } catch (error) {

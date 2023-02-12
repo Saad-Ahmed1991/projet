@@ -53,7 +53,7 @@ export const logIn = (user, navigate) => async (dispatch) => {
     }
 
     if (response.data.user.hasProfile) {
-      navigate("/");
+      navigate("/home");
     } else {
       navigate("/profile/createprofile");
     }

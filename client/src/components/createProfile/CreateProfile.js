@@ -26,8 +26,20 @@ const CreateProfile = () => {
     dispatch(getCurrentUser());
   }, []);
   const handleCreateProfile = () => {
-    if (currentUser.role === "worker") {
-      dispatch(createWorkerProfile(profile, profession, navigate));
+    if (!profile.birthday) {
+      return dispatch(setSnackbar(true, "error", "birthday is required"));
+    } else if (!profile.city) {
+      return dispatch(setSnackbar(true, "error", "city is required"));
+    } else if (!profile.phoneNumber) {
+      return dispatch(setSnackbar(true, "error", "phone number is required"));
+    } else if (!profile.address) {
+      return dispatch(setSnackbar(true, "error", "address is required"));
+    } else if (currentUser.role === "worker") {
+      if (!profession) {
+        return dispatch(setSnackbar(true, "error", "category is required"));
+      } else {
+        dispatch(createWorkerProfile(profile, profession, navigate));
+      }
     } else {
       dispatch(createProfile(profile, navigate));
     }

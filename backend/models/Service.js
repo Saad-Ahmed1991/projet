@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const serviceSchema = new mongoose.Schema({
-  profession: { type: String, required: true },
+  profession: { type: String, required: true, lowercase: true },
   images: { type: [String], default: [] },
   totalRating: { type: Number, default: 1 },
   ratingNumber: { type: Number, default: 1 },
