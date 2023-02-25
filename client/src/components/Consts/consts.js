@@ -33,7 +33,7 @@ export const professions = [
   "Menuisier",
   "Menuisier en alluminium",
   "Forgeron",
-  "other",
   "Mecanicien",
   "Transporteur",
+  "other",
 ];

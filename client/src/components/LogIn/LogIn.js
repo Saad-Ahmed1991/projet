@@ -15,7 +15,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link as LinkR, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/Actions/userActions";
-import { setSnackbar } from "../../redux/Actions/snackBarActions";
+import signin from "../../assets/signin.png";
 
 function Copyright(props) {
   return (
@@ -27,7 +27,7 @@ function Copyright(props) {
     >
       {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        Tunisia Services
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -71,13 +71,13 @@ export default function SignInSide() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: "url(https://source.unsplash.com/random)",
+            backgroundImage: `url(${signin})`,
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) =>
               t.palette.mode === "light"
-                ? t.palette.grey[50]
+                ? t.palette.grey[300]
                 : t.palette.grey[900],
-            backgroundSize: "cover",
+            backgroundSize: "auto",
             backgroundPosition: "center",
           }}
         />

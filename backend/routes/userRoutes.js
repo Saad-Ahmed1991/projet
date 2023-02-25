@@ -101,6 +101,8 @@ router.delete("/deleteuser/:iddelete", isAuth(), isAdmin, async (req, res) => {
 
   try {
     const deleteResponse = await User.deleteOne({ _id: idDelete });
+    const deleteProfile = await Profile.deleteOne({ user: idDelete });
+    const deleteService = await Service.deleteOne({ user: idDelete });
     if (deleteResponse) {
       return res.send({ msg: "User deleted" });
     }

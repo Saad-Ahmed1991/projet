@@ -4,6 +4,7 @@ import "./style.css";
 import avatar from "../../avatar.jpg";
 import UploadIcon from "@mui/icons-material/Upload";
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
+import FileUploadIcon from "@mui/icons-material/FileUpload";
 import {
   getProfile,
   updateProfile,
@@ -170,7 +171,7 @@ const Profile = () => {
                           />
                         </>
                       )}
-                      <button
+                      {/*<button
                         onClick={() => {
                           setNameEdit(!nameEdit);
                         }}
@@ -179,7 +180,7 @@ const Profile = () => {
                         <ModeEditOutlineOutlinedIcon
                           style={{ color: "blue" }}
                         />
-                      </button>
+                      </button>*/}
                     </div>
                     <div className="row about-list">
                       <div className="col-md-6">
@@ -369,7 +370,7 @@ const Profile = () => {
                   </>
                 ) : (
                   <label className="label-file" onClick={handleUploadImages}>
-                    Upload now!
+                    Upload now! <FileUploadIcon />
                   </label>
                 )}
               </div>

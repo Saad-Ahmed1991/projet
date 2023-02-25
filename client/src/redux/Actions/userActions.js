@@ -29,8 +29,14 @@ export const userSignUp = (newUser, navigate) => async (dispatch) => {
     navigate("/login");
   } catch (error) {
     console.log(error);
-    dispatch({ type: SIGN_UP_FAIL, payload: error });
-    dispatch(setSnackbar(true, "error", error.response.data.errors[0].msg));
+    //dispatch({ type: SIGN_UP_FAIL, payload: error });
+    if (Array.isArray(error.response.data.errors)) {
+      error.response.data.errors.forEach((el) => {
+        dispatch(setSnackbar(true, "error", el.msg));
+      });
+    } else {
+      dispatch(setSnackbar(true, "error", error.response.data.msg));
+    }
   }
 };
 

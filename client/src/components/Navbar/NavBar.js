@@ -66,7 +66,7 @@ export default function PrimarySearchAppBar() {
           to={`/profile`}
           style={{ textDecoration: "none", color: "inherit" }}
         >
-          <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+          <MenuItem onClick={handleMenuClose}>My profile</MenuItem>
         </LinkR>
       ) : null}
       {currentUser.role === "admin" || currentUser.role === "superAdmin" ? (
@@ -93,7 +93,7 @@ export default function PrimarySearchAppBar() {
               dispatch(logOut());
             }}
           >
-            LogOut
+            Log out
           </MenuItem>
         ) : (
           <MenuItem onClick={handleMenuClose}>Log in</MenuItem>
